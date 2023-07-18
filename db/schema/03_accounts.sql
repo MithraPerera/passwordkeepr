@@ -1,0 +1,12 @@
+DROP TABLE IF EXISTS accounts CASCADE;
+
+CREATE TABLE accounts (
+  id SERIAL PRIMARY KEY NOT NULL,
+  name VARCHAR(255) NOT NULL,
+  url VARCHAR(255) NOT NULL,
+  password VARCHAR(255) NOT NULL,
+  category VARCHAR(255) NOT NULL,
+  user_id INTEGER REFERENCES users(id) ON DELETE CASCADE,
+  organization_id INTEGER REFERENCES organizations(id) ON DELETE CASCADE,
+  created_on DATE
+);

@@ -2,9 +2,16 @@ const express = require("express");
 const router  = express.Router();
 const cookieSession = require("cookie-session");
 const bcrypt = require("bcryptjs");  // for hashing passwords
+const { registerNewUser } = require('.././db/queries/registerNewUser.js')
 
-const users = {};
+// Register Button in Home Page
+//----------------------------
+router.post("/registerbutton", (req, res) => {
+  res.redirect(`/register`);
+});
 
+// Register new user page
+//---------------------------
 router.get("/register", (req, res) => {
   const user_id = req.session["user_id"];
   const user = users[user_id];
@@ -18,35 +25,22 @@ router.get("/register", (req, res) => {
   }
 });
 
-// registration page submission post
+// registration page submission post using database
 //---------------------------
 router.post("/register", (req, res) => {
   const email = req.body.email;
   const password = req.body.password;
-  const id = generateRandomString();
+  const firstName = req.body.firstName;
+  const lastName = req.body.lastName;
   const hashedPassword = bcrypt.hashSync(password, 10);
+  const id = 101;
 
-  if (email.length < 1 || password.length < 1) {
-    res
-    .status(400)
-    .send("Error status 400, both email and password must contain a value.");
-  } else if (userLookup(users, "email", email)) {
-    res
-    .status(400)
-    .send("Error status 400, email already exists in system.");
-  } else {
-    users[id] = {
-      "id": id,
-      "email": email,
-      "hashedPassword": hashedPassword,
-    };
-    req.session.user_id = id;
-    res
-    .status(201)
-    .redirect(301, '/urls');
-  };
+  const newUser = registerNewUser(firstName, lastName, email, password)
+  .then((data) => {
+    console.log("data params", data)
+  })
+  console.log(newUser);
 });
-
 
 module.exports = router;
 

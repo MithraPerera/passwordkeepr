@@ -26,16 +26,22 @@ app.use(
 );
 app.use(express.static('public'));
 
+// requiring db queries:
+const { registerNewUser } = require('./db/queries/registerNewUser.js')
 
 /*
 -------------------------------------------------
-TEMPORARY CODE FOR INTERIM LOGIN ROUTES BEFORE REFACTORING
+LOGIN ROUTES FOR REFACTORING
 -------------------------------------------------
 */
 //require helper functions
 const cookieSession = require("cookie-session");
 const bcrypt = require("bcryptjs");  // for hashing passwords
 const { userLookup, generateRandomString } = require('./helperfunctions');
+app.use(cookieSession({
+  name: 'session',
+  keys: ['ferracuti'],
+}));
 const users = {};
 // TEMPORARY CODE ENDS HERE
 // -------------------------------------------------
@@ -107,28 +113,6 @@ app.listen(PORT, () => {
     use re.render to display the data, res.json can send the data
   */
 
-
-//LOGIN ROUTES BUILT AS THEY WERE IN TINYAPP:
-// ------------------------------------------
-
-
-// Register new user page
-//---------------------------
-app.get("/register", (req, res) => {
-  console.log('THIS IS A TEST', req);
-  const user_id = req.session["user_id"];
-  console.log(req.session["user_id"]);
-  const user = users[user_id];
-  const templateVars = {
-    user,
-  };
-  if (user_id) {
-    res.redirect("/urls");
-  } else {
-    res.render("register", templateVars);
-  }
-});
-
 // Login page
 //---------------------------
 app.get("/login", (req, res) => {
@@ -138,44 +122,54 @@ app.get("/login", (req, res) => {
     user,
   }
   if (user_id) {
-    res.redirect("/urls");
+    res.redirect("/");
   } else {
     res.render("login", templateVars);
   }
 });
 
 //-----------------------------------------------
-// POSTS START HERE
+// Register Routes
 //-----------------------------------------------
 
-// registration page submission post
+// Register Button in Home Page
+//----------------------------
+app.post("/registerbutton", (req, res) => {
+  res.redirect(`/register`);
+});
+
+// Register new user page
+//---------------------------
+app.get("/register", (req, res) => {
+  const user_id = req.session["user_id"];
+  const user = users[user_id];
+  const templateVars = {
+    user,
+  };
+  if (user_id) {
+    res.redirect("/");
+  } else {
+    res.render("register", templateVars);
+  }
+});
+
+// registration page submission post using database
 //---------------------------
 app.post("/register", (req, res) => {
   const email = req.body.email;
   const password = req.body.password;
-  const id = generateRandomString();
+  const firstName = req.body.firstName;
+  const lastName = req.body.lastName;
   const hashedPassword = bcrypt.hashSync(password, 10);
+  const id = 101;
 
-  if (email.length < 1 || password.length < 1) {
-    res
-    .status(400)
-    .send("Error status 400, both email and password must contain a value.");
-  } else if (userLookup(users, "email", email)) {
-    res
-    .status(400)
-    .send("Error status 400, email already exists in system.");
-  } else {
-    users[id] = {
-      "id": id,
-      "email": email,
-      "hashedPassword": hashedPassword,
-    };
-    req.session.user_id = id;
-    res
-    .status(201)
-    .redirect(301, '/urls');
-  };
+  const newUser = registerNewUser(firstName, lastName, email, password)
+  .then((data) => {
+    console.log("data params", data)
+  })
+  console.log(newUser);
 });
+
 
 // login page submission post
 //---------------------------
@@ -202,7 +196,7 @@ app.post("/login", (req, res) => {
     req.session.user_id = id;
     res
     .status(201)
-    .redirect(301, '/urls');
+    .redirect(301, '/');
   };
 });
 
@@ -210,12 +204,6 @@ app.post("/login", (req, res) => {
 //---------------------------
 app.post("/loginbutton", (req, res) => {
     res.redirect(`/login`);
-});
-
-// register button in header
-//---------------------------
-app.post("/registerbutton", (req, res) => {
-  res.redirect(`/register`);
 });
 
 // logout button in header

@@ -1,3 +1,5 @@
+const{ getUsers } = require('./db/queries/users.js');
+
 // function to generate random string of 6 characters for user id
 const generateRandomString = function() {
   let result = '';
@@ -10,11 +12,18 @@ const generateRandomString = function() {
   return result;
 };
 
-const userLookup = function(users, key, value) {
-  for (let i in users) {
-    if (users[i][key] === value) {
-      return users[i];
-    }
-  }
+// *** refactor this to use sql query and check if user exists in database
+const userLookup = function(key, value) {
+  const gettingUsers = getUsers().then(data => {
+    return data
+  });
+  console.log('is this the console.log', gettingUsers);
+  // for (let i in users) {
+  //   if (users[i][key] === value) {
+  //     return users[i];
+  //   }
+  // }
   return null;
 };
+
+module.exports = { generateRandomString, userLookup };

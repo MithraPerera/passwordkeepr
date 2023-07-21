@@ -115,7 +115,9 @@ app.listen(PORT, () => {
 // Register new user page
 //---------------------------
 app.get("/register", (req, res) => {
+  console.log('THIS IS A TEST', req);
   const user_id = req.session["user_id"];
+  console.log(req.session["user_id"]);
   const user = users[user_id];
   const templateVars = {
     user,

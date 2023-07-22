@@ -1,18 +1,70 @@
 body {
   display: flex;
   flex-direction: column;
-  // justify-content: center;
-  // align-items: center;
   min-height: 100vh;
+  font-family: 'Ubuntu', sans-serif;
+}
 
-  background: rgb(163, 208, 219);
-  background: linear-gradient(
-    227deg,
-    rgba(163, 208, 219, 1) 0%,
-    rgba(163, 176, 219, 1) 20%,
-    rgba(163, 173, 219, 1) 34%,
-    rgba(163, 219, 208, 1) 59%,
-    rgba(163, 208, 219, 1) 74%,
-    rgba(163, 208, 219, 1) 100%
-  );
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  margin: auto;
+  padding: 20px;
+  max-width: 1200px; /* Added: Limit the maximum width of the content on larger screens */
+}
+
+.left-column {
+  width: 50%;
+}
+
+.left-heading {
+  font-weight: bold;
+  color: #14213D;
+  font-size: 3.75rem;
+  line-height: 1;
+  font-family: 'Nixie One', serif;
+  font-weight: bolder;
+}
+
+.left-paragraph {
+  color: #14213D;
+  font-size: 1.75rem;
+  line-height: 1.75rem;
+  font-weight: 500;
+  margin-top: 40px;
+}
+
+.right-column {
+  
+  width: 50%;
+  display: flex;
+  justify-content: flex-end; /* Align content to the right */
+}
+
+/* Adjust the image dimensions */
+.right-column img {
+  max-width: 100%;
+  height: auto;
+  width: 35rem;
+  border-radius: 34% 64% 77% 36% / 73% 54% 45% 29%;
+  box-shadow: 35px 40px #F59D2A;
+}
+
+/* Media Query for smaller screens */
+@media screen and (max-width: 768px) {
+  .row {
+    flex-direction: column; /* Stack the columns on smaller screens */
+  }
+
+  .left-column,
+  .right-column {
+    width: 100%; /* Take full width on smaller screens */
+    padding: 0; /* Remove padding on smaller screens */
+  }
+
+  .right-column img {
+    margin-top: 20px; /* Add spacing between image and text on smaller screens */
+  }
 }

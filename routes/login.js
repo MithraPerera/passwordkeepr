@@ -5,18 +5,15 @@ const bcrypt = require("bcryptjs");  // for hashing passwords
 const loginUser = require("../db/queries/loginUser");
 const users = require('./register');
 
-// Login page
-//---------------------------
-router.get("/login", (req, res) => {
-  const user_id = req.session["user_id"];
-  const user = users[user_id];
-  const templateVars = {
-    user,
-  }
-  if (user_id) {
-    res.redirect("/urls");
+// new route to login page
+router.get('/', (req, res) => {
+  if (req.session.user) {
+    res.redirect('/users');
   } else {
-    res.render("login", templateVars);
+    const templateVars = {
+      user: req.session.user
+    };
+    res.render('login', templateVars);
   }
 });
 

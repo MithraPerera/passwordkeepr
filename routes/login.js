@@ -1,8 +1,8 @@
 const express = require("express");
 const router  = express.Router();
-const cookieSession = require("cookie-session");
 const bcrypt = require("bcryptjs");  // for hashing passwords
 
+const loginUser = require("../db/queries/loginUser");
 const users = require('./register');
 
 // Login page

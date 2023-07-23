@@ -109,20 +109,6 @@ app.listen(PORT, () => {
     use re.render to display the data, res.json can send the data
   */
 
-// Login page
-//---------------------------
-app.get("/login", (req, res) => {
-  const user_id = req.session["user_id"];
-  const user = users[user_id];
-  const templateVars = {
-    user,
-  }
-  if (user_id) {
-    res.redirect("/");
-  } else {
-    res.render("login", templateVars);
-  }
-});
 
 //-----------------------------------------------
 // Register Routes
@@ -164,39 +150,6 @@ app.post("/register", (req, res) => {
     console.log("data params", data)
   })
   console.log(newUser);
-});
-
-
-// login page submission post
-//---------------------------
-app.post("/login", (req, res) => {
-  const inputEmail = req.body.email;
-  const inputPassword = req.body.password;
-  const password = req.body.password;
-
-  // edge case for logging in with a non-registered email
-  // if (!userLookup("email", inputEmail)) {
-  //   res.status(404).send("404: No user registered under that email.");
-
-  // for wrong password
-  // } else if (!bcrypt.compareSync(password, hashedPassword)) {
-  //   res
-  //   .status(401)
-  //   .send("401: Wrong password!");
-
-  // } else {
-  //   const id = userObj.id;
-  //   req.session.user_id = id;
-    res
-    .status(201)
-    .redirect(301, '/');
-  // };
-});
-
-// login button in header
-//---------------------------
-app.post("/loginbutton", (req, res) => {
-    res.redirect(`/login`);
 });
 
 // logout button in header

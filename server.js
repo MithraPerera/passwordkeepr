@@ -150,6 +150,7 @@ app.post("/register", (req, res) => {
 //---------------------------
 app.post("/logout", (req, res) => {
   req.session = null
-  res
-    .redirect(301, '/login');
+  res.clearCookie('session');
+  res.clearCookie('session.sig');
+  res.redirect('/home');
 });

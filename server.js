@@ -5,6 +5,7 @@ require('dotenv').config();
 const sassMiddleware = require('./lib/sass-middleware');
 const express = require('express');
 const morgan = require('morgan');
+const bcrypt = require("bcryptjs"); 
 const cookieSession = require("cookie-session");
 const PORT = process.env.PORT || 8080;
 const app = express();
@@ -31,20 +32,17 @@ app.use(express.static('public'));
 
 // Import required functions and routes
 const { registerNewUser } = require('./db/queries/registerNewUser.js');
-const bcrypt = require("bcryptjs"); 
-const { userLookup, generateRandomString } = require('./helperfunctions');
+
 app.use(cookieSession({
   name: 'session',
   keys: ['midterm'],
 }));
-const users = {};
 
-const userApiRoutes = require('./routes/users-api');
 const usersRoutes = require('./routes/users');
 const homeRoute = require('./routes/home');
+const registerRoute = require('./routes/register');
 const loginRoute = require('./routes/login');
 const logoutRoute = require('./routes/logout');
-const registerRoute = require('./routes/register');
 
 // Define routes for different URL paths
 app.use('/users', usersRoutes);

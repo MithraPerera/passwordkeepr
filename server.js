@@ -28,7 +28,7 @@ app.use(express.static('public'));
 
 // requiring db queries:
 const { registerNewUser } = require('./db/queries/registerNewUser.js');
-const { loginUser } = require('./db/queries/loginquery.js');
+
 
 /*
 -------------------------------------------------
@@ -38,20 +38,15 @@ LOGIN ROUTES FOR REFACTORING
 //require helper functions
 const cookieSession = require("cookie-session");
 const bcrypt = require("bcryptjs");  // for hashing passwords
-const { userLookup, generateRandomString } = require('./helperfunctions');
+
 app.use(cookieSession({
   name: 'session',
   keys: ['ferracuti'],
 }));
 const users = {};
-// TEMPORARY CODE ENDS HERE
-// -------------------------------------------------
 
 
-// Separated Routes for each Resource
-// Note: Feel free to replace the example routes below with your own
-const userApiRoutes = require('./routes/users-api');
-const widgetApiRoutes = require('./routes/widgets-api');
+
 const usersRoutes = require('./routes/users');
 const homeRoute = require('./routes/home');
 const loginRoute = require('./routes/login');
@@ -61,7 +56,7 @@ const registerRoute = require('./routes/register');
 // Mount all resource routes
 // Note: Feel free to replace the example routes below with your own
 // Note: Endpoints that return data (eg. JSON) usually start with `/api`
-app.use('/api/users', userApiRoutes);
+
 app.use('/users', usersRoutes);
 app.use('/home', homeRoute);
 // app.use('/login', loginRoute);

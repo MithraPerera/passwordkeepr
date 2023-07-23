@@ -41,7 +41,7 @@ const bcrypt = require("bcryptjs");  // for hashing passwords
 
 app.use(cookieSession({
   name: 'session',
-  keys: ['ferracuti'],
+  keys: ['midterm'],
 }));
 const users = {};
 

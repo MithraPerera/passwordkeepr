@@ -1,13 +1,13 @@
 //dashboard route
 
 const express = require('express');
-const router  = express.Router();
+const router = express.Router();
 const loginUserdb = require("../db/queries/loginUser");
 
 router.get("/", (req, res) => {
   // Retrieve the user from the session
   const user = req.session.user;
-  
+
   // Check if the user is not logged in (not present in the session)
   if (!user) {
     return res.send({ message: "User is not logged in" });
@@ -24,10 +24,20 @@ router.get("/", (req, res) => {
         user: req.session.user,
         organization: organization.name
       };
-      // Render the view with the templateVars data
-      res.render('users', templateVars);
-    })
-    .catch((e) => res.send(e));
-}); 
+
+      loginUserdb
+        .getAccountsByOrganizations(user.id, organization.org_id)
+        .then((accounts) => {
+          const templateVars = {
+            user: req.session.user,
+            organization: organization.name,
+            accounts,
+          };
+          // Render the view with the templateVars data
+          res.render('users', templateVars);
+        })
+        .catch((e) => res.send(e));
+    });
+});
 
 module.exports = router;

@@ -30,7 +30,7 @@ const getOrganizationsByUser = (user_Id) => {
 
 const getAccountsByOrganizations = (user_Id, organization_Id) => {
   return db.query(`
-  SELECT users.name, organizations.name, accounts.name
+  SELECT users.*, organizations.*, accounts.*
   FROM accounts
   JOIN users ON accounts.user_id = users.id 
   JOIN organizations ON accounts.organization_id = organizations.id 

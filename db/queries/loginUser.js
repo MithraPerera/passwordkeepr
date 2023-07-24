@@ -37,8 +37,6 @@ const getAccountsByOrganizations = (user_Id, organization_Id) => {
   WHERE users.id = $1 AND organizations.id  = $2;
 `, [user_Id, organization_Id])
     .then((result) => {
-          
-      console.log('organization_Id', organization_Id);
       return result.rows || [];
     })
     .catch((err) => {

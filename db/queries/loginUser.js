@@ -39,7 +39,7 @@ const getAccountsByOrganizations = (user_Id, organization_Id) => {
     .then((result) => {
           
       console.log('organization_Id', organization_Id);
-      return result.rows[0] || [];
+      return result.rows || [];
     })
     .catch((err) => {
       console.log(err.message);

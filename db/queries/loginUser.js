@@ -47,4 +47,4 @@ const getAccountsByOrganizations = (user_Id, organization_Id) => {
 };
 
 
-module.exports = { loginUser, getOrganizationsByUser};
+module.exports = { loginUser, getOrganizationsByUser, getAccountsByOrganizations };

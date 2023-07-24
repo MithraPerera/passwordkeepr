@@ -10,21 +10,21 @@ router.get("/", (req, res) => {
   
   // Check if the user is not logged in (not present in the session)
   if (!user) {
-    return res.send({ message: "not logged in" });
+    return res.send({ message: "User is not logged in" });
   }
 
   // If user is logged in, call the "getOrganizationsByUser" function from the "loginUserdb" module
   loginUserdb
     .getOrganizationsByUser(user.id)
-    .then((user) => {
-      if (!user) {
-        return res.send({ error: "no user with that id" });
+    .then((organization) => {
+      if (!organization) {
+        return res.send({ error: "No organization for the logged in user found" });
       }
       const templateVars = {
-        user: req.session.user
+        user: req.session.user,
+        organization: organization.name
       };
-      console.log(templateVars);
-       // Render the view with the templateVars data
+      // Render the view with the templateVars data
       res.render('users', templateVars);
     })
     .catch((e) => res.send(e));

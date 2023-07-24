@@ -1,45 +1,25 @@
--- User 1 accounts
+-- Sample data for the accounts table (with 4 users and 3 organizations)
 INSERT INTO accounts (name, url, password, category, user_id, organization_id, created_on)
-VALUES ('Personal Email', 'www.gmail.com', 'P@ssw0rd1', 'email', 1, NULL, '2023-07-17');
+VALUES
+  -- Finance (Organization ID: 1)
+  ('Scotia Bank', 'https://www.scotiabank.com', '123', 'Finance', 1, 1, '2023-07-24'),
+  ('TD', 'https://www.td.com', '123', 'Finance', 1, 1, '2023-07-25'),
+  ('CIBC', 'https://www.cibc.com', '123', 'Finance', 2, 1, '2023-07-26'),
+  ('HSBC', 'https://www.hsbc.com', '123', 'Finance', 3, 1, '2023-07-27'),
+  ('RBC', 'https://www.rbc.com', '123', 'Finance', 2, 1, '2023-07-28'),
+  ('BMO', 'https://www.bmo.com', '123', 'Finance', 4, 1, '2023-07-29'),
 
-INSERT INTO accounts (name, url, password, category, user_id, organization_id, created_on)
-VALUES ('Work Email', 'www.companyemail.com', 'W0rkEma!l', 'email', 1, 1, '2023-07-17');
+  -- Social Media (Organization ID: 2)
+  ('Instagram', 'https://www.instagram.com', '123', 'Social Media', 1, 2, '2023-08-01'),
+  ('Facebook', 'https://www.facebook.com', '123', 'Social Media', 2, 2, '2023-08-02'),
+  ('LinkedIn', 'https://www.linkedin.com', '123', 'Social Media', 3, 2, '2023-08-03'),
+  ('Reddit', 'https://www.reddit.com', '123', 'Social Media', 4, 2, '2023-08-04'),
+  ('Twitter', 'https://www.twitter.com', '123', 'Social Media', 1, 2, '2023-08-05'),
 
-INSERT INTO accounts (name, url, password, category, user_id, organization_id, created_on)
-VALUES ('Social Media', 'www.facebook.com', 'F@cebo0k', 'social', 1, NULL, '2023-07-17');
-
-INSERT INTO accounts (name, url, password, category, user_id, organization_id, created_on)
-VALUES ('Banking', 'www.bank.com', 'B@nkAcc0unt', 'finance', 1, NULL, '2023-07-17');
-
--- User 2 accounts
-INSERT INTO accounts (name, url, password, category, user_id, organization_id, created_on)
-VALUES ('Personal Email', 'www.yahoo.com', 'Y@h00Mail', 'email', 2, NULL, '2023-07-17');
-
-INSERT INTO accounts (name, url, password, category, user_id, organization_id, created_on)
-VALUES ('Work Email', 'www.workplaceemail.com', 'W0rkEm@!l', 'email', 2, 2, '2023-07-17');
-
-INSERT INTO accounts (name, url, password, category, user_id, organization_id, created_on)
-VALUES ('Social Media', 'www.instagram.com', 'Inst@gr@m', 'social', 2, NULL, '2023-07-17');
-
-INSERT INTO accounts (name, url, password, category, user_id, organization_id, created_on)
-VALUES ('Banking', 'www.bank2.com', 'MyB@nkPass', 'finance', 2, NULL, '2023-07-17');
-
--- User 3 accounts
-INSERT INTO accounts (name, url, password, category, user_id, organization_id, created_on)
-VALUES ('Personal Email', 'www.outlook.com', '0utl00k!', 'email', 3, NULL, '2023-07-17');
-
-INSERT INTO accounts (name, url, password, category, user_id, organization_id, created_on)
-VALUES ('Social Media', 'www.twitter.com', 'Tw1tt3rAcc', 'social', 3, NULL, '2023-07-17');
-
-INSERT INTO accounts (name, url, password, category, user_id, organization_id, created_on)
-VALUES ('Banking', 'www.mybankonline.com', 'B@nk0nl!ne', 'finance', 3, NULL, '2023-07-17');
-
--- User 4 accounts
-INSERT INTO accounts (name, url, password, category, user_id, organization_id, created_on)
-VALUES ('Personal Email', 'www.hotmail.com', 'H0tma!l', 'email', 4, NULL, '2023-07-17');
-
-INSERT INTO accounts (name, url, password, category, user_id, organization_id, created_on)
-VALUES ('Social Media', 'www.linkedin.com', 'L1nk3d!n', 'social', 4, NULL, '2023-07-17');
-
-INSERT INTO accounts (name, url, password, category, user_id, organization_id, created_on)
-VALUES ('Banking', 'www.bank3.com', 'S3cur3B@nk', 'finance', 4, NULL, '2023-07-17');
+  -- Entertainment (Organization ID: 3)
+  ('AppleTV', 'https://www.apple.com/tv', '123', 'Entertainment', 2, 3, '2023-08-06'),
+  ('Audible', 'https://www.audible.com', '123', 'Entertainment', 3, 3, '2023-08-07'),
+  ('Trello', 'https://www.trello.com', '123', 'Entertainment', 4, 3, '2023-08-08'),
+  ('Youtube', 'https://www.youtube.com', '123', 'Entertainment', 1, 3, '2023-08-09'),
+  ('Spotify', 'https://www.spotify.com', '123', 'Entertainment', 3, 3, '2023-08-10'),
+  ('Netflix', 'https://www.netflix.com', '123', 'Entertainment', 2, 3, '2023-08-11');

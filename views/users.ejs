@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>PasswordKeepR</title>
+
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://fonts.googleapis.com/css2?family=Nixie+One&family=Poppins:wght@300;400;600&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
+    integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous" />
+
+  <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" />
+  <link rel="stylesheet" href="/vendor/border-box.css" />
+  <link rel="stylesheet" href="/styles/main.css" />
+  <link rel="stylesheet" href="/styles/layout.css" />
+  <link rel="stylesheet" href="/styles/header.css" />
+  <link rel="stylesheet" href="/styles/app.css" />
+  <link rel="stylesheet" href="/styles/add-new.css" />
+  <link rel="stylesheet" href="/styles/side-menu.css" />
+  <link rel="stylesheet" href="/styles/table.css" />
+
+  <script src="/vendor/jquery-3.0.0.js"></script>
+  <style>
+    html {
+      background: #ddd6f3;
+      /* fallback for old browsers */
+      background: -webkit-linear-gradient(to right, #ffffff, #daf1f8);
+      /* Chrome 10-25, Safari 5.1-6 */
+      background: linear-gradient(to right, #ffffff, #daf1f8);
+      /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    }
+
+    body {
+      background: #ddd6f3;
+      /* fallback for old browsers */
+      background: -webkit-linear-gradient(to right, #ffffff, #daf1f8);
+      /* Chrome 10-25, Safari 5.1-6 */
+      background: linear-gradient(to right, #ffffff, #daf1f8);
+      /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    }
+  </style>
+</head>
+
+<body>
+  <%- include('partials/_header') %>
+
+    <main class="main-content">
+      <!--side menu displaying categories-->
+      <ul class="side-menu">
+        <li class="li-all">All Categories</li>
+        <li class="li-work">Work</li>
+        <li class="li-finance">Finances</li>
+        <li class="li-social-media">Social Media</li>
+        <li class="li-entertainment">Entertainment</li>
+      </ul>
+      <div class="accounts-section">
+        <div class="account-header">
+          <!-- Loop for organization till end line 96-->
+          <h1 id="account-header-cat">Organization: <%= organization %>
+          </h1>
+          <button type="button" class="add-new">Add New Account</button>
+        </div>
+        <!-- call to add new account form -->
+        <table class="table table-bordered">
+          <thead>
+            <tr>
+              <th scope="col">Account Name</th>
+              <th scope="col">Account URL</th>
+              <th scope="col">Username</th>
+              <th scope="col">Password</th>
+              <th scope="col">Category</th>
+              <th scope="col"></th>
+            </tr>
+          </thead>
+          <tbody>
+            <!-- Loop for accounts -->
+            <% for (const account of accounts) { %>
+              <tr class="account-item" data-category="<%= account.category %>">
+                <td>
+                  <%= account.name %>
+                </td>
+                <td>
+                  <%= account.url %>
+                </td>
+                <td>
+                  <%= account.username %>
+                </td>
+                <td>
+                  <%= account.password %>
+                </td>
+                <td>
+                  <%= account.category %>
+                </td>
+                <td>
+                  <button onclick="copyPassword('<%= account.password %>')">Copy</button>
+                </td> 
+              </tr>
+              <% } %>
+          </tbody>
+        </table>
+    </main>
+</body>
+</html>

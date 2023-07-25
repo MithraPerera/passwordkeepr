@@ -11,9 +11,10 @@ th {
   text-align: left;
   padding: 15px 30px 15px 30px;
   font-size: 18px;
-  font-family: 'Nixie One', serif;
+  font-family: 'Poppins', sans-serif;
   font-weight: 300;
   color: #fff;
+  font-weight: bold;
 }
 
 .table-header {
@@ -31,11 +32,9 @@ td {
   font-weight: 300;
 }
 
-
 tr:nth-child(4n+2) {
   background-color: #34495D;
 }
-
 
 .more-td {
   display: flex;
@@ -52,4 +51,27 @@ tr:nth-child(4n+2) {
 
 .hidden-tr td {
   color: #34495D;
+}
+
+td button {
+  font-size: 16px;
+  background-color: #273644;
+  color: white;
+  border-radius: 5px;
+  margin-left: auto;
+  margin-right: auto;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 500;
+  padding: 5px 10px;
+  display: flex;
+  align-items: center;
+  border-radius: 5px;
+}
+
+td button:hover {
+  background-color: #14213D;
+  color: #F59D2A;
+  cursor: pointer;
+  border: 1px solid #F59D2A;
+  border-radius: 5px;
 }

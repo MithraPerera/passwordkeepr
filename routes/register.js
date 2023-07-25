@@ -1,45 +1,49 @@
+// Import requirements
 const express = require("express");
-const router  = express.Router();
+const router = express.Router();
 const cookieSession = require("cookie-session");
 const bcrypt = require("bcryptjs");  // for hashing passwords
-const { registerNewUser } = require('.././db/queries/registerNewUser.js')
+const registerNewUser = require('../db/queries/registerNewUser.js');
 
-// Register Button in Home Page
-//----------------------------
-router.post("/registerbutton", (req, res) => {
-  res.redirect(`/register`);
-});
 
 // Register new user page
 //---------------------------
-router.get("/register", (req, res) => {
-  const user_id = req.session["user_id"];
-  const user = users[user_id];
-  const templateVars = {
-    user,
-  };
-  if (user_id) {
-    res.redirect("/urls");
+router.get("/", (req, res) => {
+  if (req.session.user) {
+    res.redirect("/users");
   } else {
-    res.render("register", templateVars);
+    const templateVars = {
+      user: req.session.user
+    };
+    res.render('register', templateVars);
   }
 });
 
+// Register Button in Home Page
+//----------------------------
+// router.post("/registerbutton", (req, res) => {
+//   res.redirect(`/register`);
+// });
+
 // registration page submission post using database
 //---------------------------
-router.post("/register", (req, res) => {
+router.post("/", (req, res) => {
   const email = req.body.email;
   const password = req.body.password;
-  const firstName = req.body.firstName;
-  const lastName = req.body.lastName;
-  const hashedPassword = bcrypt.hashSync(password, 10);
-  const id = 101;
+  const firstName = req.body.firstname;
+  const lastName = req.body.lastname;
+  // const hashedPassword = bcrypt.hashSync(password, 10);
+  // const id = 101;
 
-  const newUser = registerNewUser(firstName, lastName, email, password)
-  .then((data) => {
-    console.log("data params", data)
-  })
-  console.log(newUser);
+  registerNewUser.registerNewUser(firstName, lastName, email, password)
+    .then((data) => {
+      console.log("data params", data);
+      res.redirect('/login');
+    })
+    .catch((e) => {
+      console.log("Error registering: ", e);
+      return res.status(500).send('Server error during registration');
+    });
 });
 
 module.exports = router;

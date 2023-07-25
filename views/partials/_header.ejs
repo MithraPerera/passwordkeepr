@@ -10,14 +10,14 @@
     <a href="/" class="logo">
       <img src="images/logo.png" alt="PasswordKeepR Logo" height=90>
     </a>
-
-
+    
+    
     <div class="nav-buttons">
       <% if(!user){ %>
         <form method="GET" action="/login">
           <button type="submit" class="btn btn-outline-dark">Login</button>
         </form>
-        <form method="POST" action="/registerbutton">
+        <form method="GET" action="/register">
           <input type="hidden" name="Register" />
           <text>&nbsp</text>
           <button type="submit" class="btn btn-outline-dark">Register</button>

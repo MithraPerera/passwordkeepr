@@ -28,11 +28,13 @@ router.get("/", (req, res) => {
       loginUserdb
         .getAccountsByOrganizations(user.id, organization.org_id)
         .then((accounts) => {
+          
           const templateVars = {
             user: req.session.user,
             organization: organization.name,
             accounts,
           };
+
           // Render the view with the templateVars data
           res.render('users', templateVars);
         })

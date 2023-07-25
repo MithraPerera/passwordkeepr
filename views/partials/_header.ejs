@@ -10,23 +10,26 @@
     <a href="/" class="logo">
       <img src="images/logo.png" alt="PasswordKeepR Logo" height=90>
     </a>
-    
-    
+
+
     <div class="nav-buttons">
       <% if(!user){ %>
-       <form method="GET" action="/login">
-        <button type="submit" class="btn btn-outline-dark">Login</button>
-      </form>
-      <form method="POST" action="/registerbutton">
-        <input type="hidden" name="Register" />
-        <text>&nbsp</text>
-        <button type="submit" class="btn btn-outline-dark">Register</button>
-      </form>
-      <% } else { %>
-      <form method="POST" action="/logout">
-       <button type="submit" class="btn btn-outline-dark">Logout</button>
-      </form>
-      <% } %> 
+        <form method="GET" action="/login">
+          <button type="submit" class="btn btn-outline-dark">Login</button>
+        </form>
+        <form method="POST" action="/registerbutton">
+          <input type="hidden" name="Register" />
+          <text>&nbsp</text>
+          <button type="submit" class="btn btn-outline-dark">Register</button>
+        </form>
+        <% } else { %>
+          <form method="POST" action="/logout">
+            <div class="logged">
+              Logged as: <%= user.email%>
+                <button type="submit" class="btn btn-outline-dark">Logout</button>
+            </div>
+          </form>
+          <% } %>
     </div>
   </nav>
 </header>

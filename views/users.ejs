@@ -17,14 +17,12 @@
   <link rel="stylesheet" href="/styles/main.css" />
   <link rel="stylesheet" href="/styles/layout.css" />
   <link rel="stylesheet" href="/styles/header.css" />
-  <link rel="stylesheet" href="/styles/main.css" />
   <link rel="stylesheet" href="/styles/app.css" />
   <link rel="stylesheet" href="/styles/add-new.css" />
   <link rel="stylesheet" href="/styles/side-menu.css" />
   <link rel="stylesheet" href="/styles/table.css" />
 
   <script src="/vendor/jquery-3.0.0.js"></script>
-  <script defer src="/scripts/user.js"></script>
   <style>
     html {
       background: #ddd6f3;
@@ -43,37 +41,66 @@
       background: linear-gradient(to right, #ffffff, #daf1f8);
       /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
     }
-
-    /* table .btn {
-      padding: 5px 40px;
-      text-align: center;
-      display: block;
-      margin: 0 auto;
-    } */
   </style>
 </head>
 
 <body>
   <%- include('partials/_header') %>
-    
-  <main class="main-content">
 
+    <main class="main-content">
+      <!--side menu displaying categories-->
       <ul class="side-menu">
-        <li class="li-all">All Catgories</li>
+        <li class="li-all">All Categories</li>
         <li class="li-work">Work</li>
         <li class="li-finance">Finances</li>
         <li class="li-social-media">Social Media</li>
         <li class="li-entertainment">Entertainment</li>
       </ul>
-
-      <div class="passwords-section">
-        <div class="vault-header">
-          
-          <h1 id="vault-header-cat">Organization:  <%= organization %> </h1> 
+      <div class="accounts-section">
+        <div class="account-header">
+          <!-- Loop for organization till end line 96-->
+          <h1 id="account-header-cat">Organization: <%= organization %>
+          </h1>
           <button type="button" class="add-new">Add New Account</button>
         </div>
-
-      </main>
-  </body>
-
+        <!-- call to add new account form -->
+        <table class="table table-bordered">
+          <thead>
+            <tr>
+              <th scope="col">Account Name</th>
+              <th scope="col">Account URL</th>
+              <th scope="col">Username</th>
+              <th scope="col">Password</th>
+              <th scope="col">Category</th>
+              <th scope="col"></th>
+            </tr>
+          </thead>
+          <tbody>
+            <!-- Loop for accounts -->
+            <% for (const account of accounts) { %>
+              <tr class="account-item" data-category="<%= account.category %>">
+                <td>
+                  <%= account.name %>
+                </td>
+                <td>
+                  <%= account.url %>
+                </td>
+                <td>
+                  <%= account.username %>
+                </td>
+                <td>
+                  <%= account.password %>
+                </td>
+                <td>
+                  <%= account.category %>
+                </td>
+                <td>
+                  <button onclick="copyPassword('<%= account.password %>')">Copy</button>
+                </td> 
+              </tr>
+              <% } %>
+          </tbody>
+        </table>
+    </main>
+</body>
 </html>

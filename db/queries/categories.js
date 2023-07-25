@@ -9,7 +9,7 @@ const getAllCategories = () => {
 };
 
 const getAllCategorySites = (categoryId) => {
-  return db.query(`SELECT * FROM accounts WHERE category_id = ${categoryId}`)
+  return db.query(`SELECT * FROM accounts WHERE category_id = $1`, [categoryId])
     .then(data => {
       console.log(data.rows);
       return data.rows;

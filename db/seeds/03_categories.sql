@@ -1,11 +1,11 @@
 INSERT INTO categories (name)
-VALUES ('Social');
+VALUES ('Finance');
 
 INSERT INTO categories (name)
-VALUES ('Business');
+VALUES ('Social');
 
 INSERT INTO categories (name)
 VALUES ('Entertainment');
 
 INSERT INTO categories (name)
-VALUES ('Other');
+VALUES ('Work');

@@ -17,6 +17,8 @@
   <link rel="stylesheet" href="/styles/main.css" />
   <link rel="stylesheet" href="/styles/layout.css" />
   <link rel="stylesheet" href="/styles/header.css" />
+  <link rel="stylesheet" href="/styles/createAccount.css" />
+
 
   <script src="/vendor/jquery-3.0.0.js"></script>
   <script defer src="/scripts/app.js"></script>
@@ -50,26 +52,18 @@
 
 <body>
   <%- include('partials/_header') %>
-    <main style="margin: 1em;">
-     <h3>Log In</h3>
-      <table class="table">
-        <tbody>
-          <td>
-            <form action="/login" method="POST">
-              <div class="form-group">
-                <label for="">Email address</label>
-                  <input type="email" class="form-control" name="email" placeholder="Enter email">
-                </div>
-                <div class="form-group">
-                  <label for="">Password</label>
-                  <input type="password" class="form-control" name="password" placeholder="Password">
-                </div>
-                <button type="submit" class="btn btn-primary ">Log In</button>
-            </form>
-          </td>
-        </tbody>
-      </table>
-    </main>
+  <form action="" class="password-check">
+    <fieldset>
+      <legend>Please select one of the following</legend>
+      <input type="radio" name="action" id="track" value="track" /><label for="track">Uppercase Letter?</label><br />
+      <input type="radio" name="action" id="event" value="event"  /><label for="event">Lowercase Letters?</label><br />
+    </fieldset>
+    <label for="">Do you want Numbers?</label>
+    <input type="radio">
+    <label for="">Length of letters</label>
+    <input type="range" name="" id="">
+    <button type="submit">Submit</button>
+  </form>
     <!-- Bootstrap JS -->
     <script
       src="https://code.jquery.com/jquery-3.3.1.slim.min.js"

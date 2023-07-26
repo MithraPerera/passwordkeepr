@@ -61,7 +61,9 @@
           <!-- Loop for organization till end line 96-->
           <h1 id="account-header-cat">Organization: <%= organization %>
           </h1>
-          <button type="button" class="add-new">Add New Account</button>
+          <form method="GET" action="/createAccount">
+            <button type="submit" class="btn btn-outline-dark">Add New Account</button>
+          </form>
         </div>
         <!-- call to add new account form -->
         <table class="table table-bordered">
@@ -88,48 +90,40 @@
                 <td>
                   <%= account.username %>
                 </td>
-                <td>
-                <input type="text" value="<%= account.password %>" id="passwordCopy" class="copyPass" readonly/>
-                <span class="copyAlert">password copied!</span>
+                <td id="passwordCopy">
+                  <%= account.password %>
                 </td>
                 <td>
                   <%= account.category %>
                 </td>
                 <td>
-                  <button id="copyButton1">Copy</button>
+                  <button class="copyButton1">Copy</button>
+                  <span id="copyAlert">password copied!</span>
                 </td>
-                <script>
-                  const copyPassword = function(password) {
-                    alert(password);
-                    // window.clipboardData.setData('Text', password);
-                    // navigator.clipboard.writeText("unique text password");
-                    // const $inp=$("<input>");
-                    // $("body").append($inp);
-                    // $inp.val($(""+password)
-                    // .text()).select();
-                    // document.execCommand("copy");
-                    // $inp.remove();
-                  };
-                  $(document).ready(function(){
-                    $("#copyButton1").click(
-                      function(){
-                        const password = $('#passwordCopy').text();
-                        $('#passwordCopy').select();
-                        document.execCommand("copy");
-                        // document.execCommand("copy");
-                        // alert(password);
-                        // copyPassword(password);
-                        $(".copyAlert").fadeIn(500, function() {
-                          setTimeout(function() {
-                            $(".copyAlert").fadeOut(1000);
-                          }, 1500);
-                        });
-                      });
-                  });
-                </script>
               </tr>
               <% } %>
           </tbody>
+          <script>
+            const copyPassword = function(password) {
+              alert(password);
+              // window.clipboardData.setData('Text', password);
+              // navigator.clipboard.writeText("unique text password");
+            };
+            $(document).ready(function(){
+              $(".copyButton1").click(
+                function(){
+                  const password = $(this).parent().parent().children("#passwordCopy").text();
+                  navigator.clipboard.writeText(password);
+                  $("#copyAlert").fadeIn(500, function() {
+
+                    setTimeout(function() {
+                      $("#copyAlert").fadeOut(1000);
+                    }, 2000);
+
+                  });
+                });
+            });
+          </script>
         </table>
     </main>
 </body>

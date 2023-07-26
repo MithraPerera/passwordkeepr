@@ -81,13 +81,9 @@ td button:hover {
   border: none;
 }
 
-.copyAlert{
+#copyAlert{
   display: none;
   color: pink;
-  text-decoration: overline;
-}
-
-.table td, .table th {
-  padding-top: 10px;
-  padding-bottom: 10px;
+  font-size: large;
+  text-align: center;
 }

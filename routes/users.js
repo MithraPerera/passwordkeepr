@@ -26,9 +26,9 @@ router.get("/", (req, res) => {
       };
 
       loginUserdb
-        .getAccountsByOrganizations(user.id, organization.org_id)
+        .getAccountsByUser('1')
         .then((accounts) => {
-          
+          console.log(accounts);
           const templateVars = {
             user: req.session.user,
             organization: organization.name,

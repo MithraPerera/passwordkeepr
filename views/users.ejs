@@ -75,7 +75,7 @@
               <th scope="col"></th>
             </tr>
           </thead>
-          <tbody>
+          <tbody class="table-values">
             <!-- Loop for accounts -->
             <% for (const account of accounts) { %>
               <tr class="account-item" data-category="<%= account.category %>">
@@ -89,14 +89,44 @@
                   <%= account.username %>
                 </td>
                 <td>
-                  <%= account.password %>
+                <input type="text" value="<%= account.password %>" id="passwordCopy" class="copyPass" readonly/>
+                <span class="copyAlert">password copied!</span>
                 </td>
                 <td>
                   <%= account.category %>
                 </td>
                 <td>
-                  <button onclick="copyPassword('<%= account.password %>')">Copy</button>
-                </td> 
+                  <button id="copyButton1">Copy</button>
+                </td>
+                <script>
+                  const copyPassword = function(password) {
+                    alert(password);
+                    // window.clipboardData.setData('Text', password);
+                    // navigator.clipboard.writeText("unique text password");
+                    // const $inp=$("<input>");
+                    // $("body").append($inp);
+                    // $inp.val($(""+password)
+                    // .text()).select();
+                    // document.execCommand("copy");
+                    // $inp.remove();
+                  };
+                  $(document).ready(function(){
+                    $("#copyButton1").click(
+                      function(){
+                        const password = $('#passwordCopy').text();
+                        $('#passwordCopy').select();
+                        document.execCommand("copy");
+                        // document.execCommand("copy");
+                        // alert(password);
+                        // copyPassword(password);
+                        $(".copyAlert").fadeIn(500, function() {
+                          setTimeout(function() {
+                            $(".copyAlert").fadeOut(1000);
+                          }, 1500);
+                        });
+                      });
+                  });
+                </script>
               </tr>
               <% } %>
           </tbody>

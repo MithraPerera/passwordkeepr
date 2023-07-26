@@ -1,7 +1,7 @@
 const{ getUsers } = require('./db/queries/users.js');
 
 // function to generate random string of 6 characters for user id
-const generateRandomString = function() {
+const generateCustomPassword = function() {
   let result = '';
   const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
   let counter = 0;
@@ -26,4 +26,4 @@ const userLookup = function(key, value) {
   return null;
 };
 
-module.exports = { generateRandomString, userLookup };
+module.exports = { copyToClipboard, generateRandomString, userLookup };

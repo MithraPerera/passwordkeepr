@@ -25,7 +25,6 @@ th {
 
 td {
   text-align: left;
-  padding: 30px;
   color: #fff;
   font-size: 18px;
   font-family: 'Nixie One', serif;
@@ -74,4 +73,21 @@ td button:hover {
   cursor: pointer;
   border: 1px solid #F59D2A;
   border-radius: 5px;
+}
+
+.copyPass {
+  background-color: #273644;
+  color: white;
+  border: none;
+}
+
+.copyAlert{
+  display: none;
+  color: pink;
+  text-decoration: overline;
+}
+
+.table td, .table th {
+  padding-top: 10px;
+  padding-bottom: 10px;
 }

@@ -19,12 +19,6 @@ router.get("/", (req, res) => {
   }
 });
 
-// Register Button in Home Page
-//----------------------------
-// router.post("/registerbutton", (req, res) => {
-//   res.redirect(`/register`);
-// });
-
 // registration page submission post using database
 //---------------------------
 router.post("/", (req, res) => {

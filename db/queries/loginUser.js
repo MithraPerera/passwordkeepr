@@ -27,15 +27,15 @@ const getOrganizationsByUser = (user_Id) => {
       console.log(err.message);
     });
 };
-
 const getAccountsByOrganizations = (user_Id, organization_Id) => {
   return db.query(`
-  SELECT users.*, organizations.*, accounts.*
-  FROM accounts
-  JOIN users ON accounts.user_id = users.id
-  JOIN organizations ON accounts.organization_id = organizations.id
-  WHERE users.id = $1 AND organizations.id  = $2;
-`, [user_Id, organization_Id])
+    SELECT users.*, organizations.*, accounts.*, categories.*, 
+    FROM accounts
+    JOIN users ON accounts.user_id = users.id 
+    JOIN organizations ON accounts.organization_id = organizations.id 
+    JOIN categories ON accounts.category_id = categories.id 
+    WHERE users.id = $1 AND organizations.id  = $2;
+  `, [user_Id, organization_Id])
     .then((result) => {
       return result.rows || [];
     })
@@ -44,19 +44,17 @@ const getAccountsByOrganizations = (user_Id, organization_Id) => {
     });
 };
 
-const getAccountsByUser = (user_Id) => {
+const getPersonalAccounts = (user_Id, organization_Id) => {
   return db.query(`
-  SELECT *
-  FROM accounts
-  WHERE user_id = $1;
-`, [user_Id])
+  SELECT * from accounts
+  where user_id = $1 AND organization_id IS NULL;
+  `, [user_Id])
     .then((result) => {
       return result.rows || [];
     })
     .catch((err) => {
-      console.log(err.message);
+      console.log('Error', err.message);
     });
 };
 
-
-module.exports = { loginUser, getOrganizationsByUser, getAccountsByOrganizations, getAccountsByUser };
+module.exports = { loginUser, getOrganizationsByUser, getAccountsByOrganizations, getPersonalAccounts };

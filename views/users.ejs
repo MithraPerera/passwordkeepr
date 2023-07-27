@@ -65,20 +65,20 @@
             <button type="submit" class="btn btn-outline-dark">Add New Account</button>
           </form>
         </div>
-        <!-- call to add new account form -->
+ 
         <table class="table table-bordered">
           <thead>
             <tr>
               <th scope="col">Account Name</th>
               <th scope="col">Account URL</th>
-              <th scope="col">Username</th>
+              <th scope="col">Username/Email</th>
               <th scope="col">Password</th>
               <th scope="col">Category</th>
               <th scope="col"></th>
             </tr>
           </thead>
           <tbody class="table-values">
-            <!-- Loop for accounts -->
+   
             <% for (const account of accounts) { %>
               <tr class="account-item" data-category="<%= account.category %>">
                 <td>
@@ -98,7 +98,7 @@
                 </td>
                 <td>
                   <button class="copyButton1">Copy</button>
-                  <span id="copyAlert">password copied!</span>
+                  <span id="copyAlert">Password copied!</span>
                 </td>
               </tr>
               <% } %>

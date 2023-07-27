@@ -132,14 +132,15 @@
                 <td>
                   <%= personal_account.username %>
                 </td>
-                <td>
+                <td id="passwordCopy">
                   <%= personal_account.password %>
                 </td>
                 <td>
                   <%= personal_account.category_name%>
                 </td>
                 <td>
-                  <button onclick="copyPassword('<%= personal_account.password %>')">Copy</button>
+                  <button class="copyButton1">Copy</button>
+                  <span id="copyAlert">Password copied!</span>
                 </td>
               </tr>
               <% } %>

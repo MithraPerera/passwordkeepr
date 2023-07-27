@@ -36,3 +36,13 @@ header nav {
  text-align: center;
  font-weight: bold;
 }
+
+@keyframes pulsate {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.2); }
+  100% { transform: scale(1); }
+}
+
+.pulsating-image {
+  animation: pulsate 2s;
+}

@@ -17,7 +17,7 @@ const getOrganizationsByUser = (user_Id) => {
   return db.query(`
   SELECT organizations.*, users.*, organizations.id as org_id
   FROM organizations
-  JOIN users ON organizations.admin_id = users.id
+  JOIN users ON organizations.id = users.organization_id
   WHERE users.id = $1;
 `, [user_Id])
     .then((result) => {

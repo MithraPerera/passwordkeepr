@@ -58,29 +58,27 @@
       </ul>
       <div class="accounts-section">
         <div class="account-header">
-          <!-- Loop for organization till end line 96-->
           <h1 id="account-header-cat">Organization: <%= organization %>
           </h1>
-          <form method="GET" action="/createAccount">
-            <button type="submit" class="btn btn-outline-dark">Add New Account</button>
-          </form>
         </div>
-
-        <table class="table table-bordered">
-          <thead>
-            <tr>
-              <th>Account Name</th>
-              <th>Account URL</th>
-              <th>Username/Email</th>
-              <th>Password</th>
-              <th>Category</th>
-              <th></th>
-            </tr>
-          </thead>
-
-          <!-- Loop for organization accounts -->
-          <tbody>
-            <h1 id="account-header-cat">Admin Accounts %>
+        <!-- Organization Passwords -->
+        <div class="border">
+          <table class="table table-bordered">
+            <h1 id="account-header-cat">Admin Accounts</h1>
+            <form method="GET" action="/createAccount">
+              <button type="submit" class="btn btn-outline-dark btn_account">Add New Account</button>
+            </form>
+            <thead>
+              <tr>
+                <th>Account Name</th>
+                <th>Account URL</th>
+                <th>Username/Email</th>
+                <th>Password</th>
+                <th>Category</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody>
               <% for (const org_account of organizationAccounts) { %>
                 <tr>
                   <td>
@@ -104,51 +102,57 @@
                   </td>
                 </tr>
                 <% } %>
-          </tbody>
-        </table>
+            </tbody>
+          </table>
+        </div>
 
-        <h1 id="account-header-cat">Personal Accounts</h1>
-        <table class="table table-bordered">
-          <thead>
-            <tr>
-              <th>Account Name</th>
-              <th>Account URL</th>
-              <th>Username</th>
-              <th>Password</th>
-              <th>Category</th>
-              <th></th>
-            </tr>
-          </thead>
-          <tbody>
-            <!-- Loop for personal accounts -->
-            <% for (const personal_account of personalAccounts) { %>
+        <!-- Personal Passwords -->
+        <div class="border">
+          <table class="table table-bordered">
+            <h1 id="account-header-cat">Personal Accounts</h1>
+            <form method="GET" action="/createAccount">
+              <button type="submit" class="btn btn-outline-dark btn_account">Add New Account</button>
+            </form>
+            <thead>
               <tr>
-                <td>
-                  <%= personal_account.name %>
-                </td>
-                <td>
-                  <%= personal_account.url %>
-                </td>
-                <td>
-                  <%= personal_account.username %>
-                </td>
-                <td id="passwordCopy">
-                  <%= personal_account.password %>
-                </td>
-                <td>
-                  <%= personal_account.category_name%>
-                </td>
-                <td>
-                  <button class="copyButton1">Copy</button>
-                  <span id="copyAlert">Password copied!</span>
-                </td>
+                <th>Account Name</th>
+                <th>Account URL</th>
+                <th>Username/Email</th>
+                <th>Password</th>
+                <th>Category</th>
+                <th></th>
               </tr>
-              <% } %>
-          </tbody>
-        </table>
+            </thead>
+            <tbody>
+              <% for (const personal_account of personalAccounts) { %>
+                <tr>
+                  <td>
+                    <%= personal_account.name %>
+                  </td>
+                  <td>
+                    <%= personal_account.url %>
+                  </td>
+                  <td>
+                    <%= personal_account.username %>
+                  </td>
+                  <td id="passwordCopy">
+                    <%= personal_account.password %>
+                  </td>
+                  <td>
+                    <%= personal_account.category_name%>
+                  </td>
+                  <td>
+                    <button class="copyButton1">Copy</button>
+                    <span id="copyAlert">Password copied!</span>
+                  </td>
+                </tr>
+                <% } %>
+            </tbody>
+          </table>
+        </div>
 
         <script>
-          const copyPassword = function(password) {
+          const copyPassword = function (password) {
             alert(password);
             // window.clipboardData.setData('Text', password);
             // navigator.clipboard.writeText("unique text password");
@@ -160,7 +164,7 @@
                 navigator.clipboard.writeText(password);
                 $("#copyAlert").fadeIn(500, function () {
 
-                  setTimeout(function() {
+                  setTimeout(function () {
                     $("#copyAlert").fadeOut(1000);
                   }, 2000);
 

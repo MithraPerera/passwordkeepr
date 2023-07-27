@@ -23,6 +23,7 @@
   <link rel="stylesheet" href="/styles/table.css" />
 
   <script src="/vendor/jquery-3.0.0.js"></script>
+  <script defer src="/scripts/app.js"></script>
   <style>
     html {
       background: #ddd6f3;
@@ -50,11 +51,23 @@
     <main class="main-content">
       <!--side menu displaying categories-->
       <ul class="side-menu sticky">
-        <li class="li-all">All Categories</li>
-        <li class="li-work">Work</li>
-        <li class="li-finance">Finances</li>
-        <li class="li-social-media">Social Media</li>
-        <li class="li-entertainment">Entertainment</li>
+        <li class="li-all">Categories</li>
+        <li class="li-finance">
+          <button type="button" class="btn btn-primary btn-lg categoryButton" name="categorySelection"
+            value="1">Finance</button>
+        </li>
+        <li class="li-social">
+          <button type="button" class="btn btn-primary btn-lg categoryButton" name="categorySelection"
+            value="2">Social</button>
+        </li>
+        <li class="li-entertainment">
+          <button type="button" class="btn btn-primary btn-lg categoryButton" name="categorySelection"
+            value="3">Entertainment</button>
+        </li>
+        <li class="li-work">
+          <button type="button" class="btn btn-primary btn-lg categoryButton" name="categorySelection"
+            value="4">Work</button>
+        </li>
       </ul>
       <div class="accounts-section">
         <div class="account-header">
@@ -152,19 +165,19 @@
         </div>
 
         <script>
-          const copyPassword = function (password) {
+          const copyPassword = function(password) {
             alert(password);
             // window.clipboardData.setData('Text', password);
             // navigator.clipboard.writeText("unique text password");
           };
-          $(document).ready(function () {
+          $(document).ready(function() {
             $(".copyButton1").click(
-              function () {
+              function() {
                 const password = $(this).parent().parent().children("#passwordCopy").text();
                 navigator.clipboard.writeText(password);
-                $("#copyAlert").fadeIn(500, function () {
+                $("#copyAlert").fadeIn(500, function() {
 
-                  setTimeout(function () {
+                  setTimeout(function() {
                     $("#copyAlert").fadeOut(1000);
                   }, 2000);
 

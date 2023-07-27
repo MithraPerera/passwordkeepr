@@ -41,28 +41,86 @@
       /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
     }
 
-    table .btn {
-      padding: 5px 40px;
-      text-align: center;
-      display: block;
-      margin: 0 auto;
-    }
   </style>
 </head>
 
 <body>
   <%- include('partials/_header') %>
-  <form action="" class="password-check">
-    <fieldset>
-      <legend>Please select one of the following</legend>
-      <input type="radio" name="action" id="track" value="track" /><label for="track">Uppercase Letter?</label><br />
-      <input type="radio" name="action" id="event" value="event"  /><label for="event">Lowercase Letters?</label><br />
-    </fieldset>
-    <label for="">Do you want Numbers?</label>
-    <input type="radio">
-    <label for="">Length of letters</label>
-    <input type="range" name="" id="">
-    <button type="submit">Submit</button>
+  <form action="/createNewAccount" method="POST" class="userAccountForm">
+    <table class="userAccountInputs">
+      <tr>
+        <td>Name</td>
+        <td>
+          <input type="text" name="Name">
+        </td>
+      </tr>
+      <tr>
+        <td>Username</td>
+        <td>
+          <input type="text" name="Username">
+        </td>
+      </tr>
+      <tr>
+        <td>Password</td>
+        <td>
+          <input type="text" id="generated-password">
+        </td>
+      </tr>
+      <tr>
+        <td>URL</td>
+        <td>
+          <input type="text" name="URL">
+        </td>
+      </tr>
+    </table>
+    <table class="password-generator">
+      <div>Password Generator</div>
+      <tr>
+        <td>Include Uppercase Letters</td>
+        <td>
+          <input type="checkbox" name="uppercase" value="yes" id="uppercase-yes" checked>
+          <label for="uppercase-yes">Yes</label>
+          <input type="checkbox" name="uppercase" value="no" id="uppercase-no">
+          <label for="uppercase-no">No</label>
+        </td>
+      </tr>
+      <tr>
+        <td>Include Lowercase Letters</td>
+        <td>
+          <input type="checkbox" name="lowercase" value="yes" id="lowercase-yes" checked>
+          <label for="lowercase-yes">Yes</label>
+          <input type="checkbox" name="lowercase" value="no" id="lowercase-no">
+          <label for="lowercase-no">No</label>
+        </td>
+      </tr>
+      <tr>
+        <td>Include Numbers</td>
+        <td>
+          <input type="checkbox" name="numbers" value="yes" id="numbers-yes" checked>
+          <label for="numbers-yes">Yes</label>
+          <input type="checkbox" name="numbers" value="no" id="numbers-no">
+          <label for="numbers-no">No</label>
+        </td>
+      </tr>
+      <tr>
+        <td>Include Symbols</td>
+        <td>
+          <input type="checkbox" name="symbols" value="yes" id="symbols-yes" checked>
+          <label for="symbols-yes">Yes</label>
+          <input type="checkbox" name="symbols" value="no" id="symbols-no">
+          <label for="symbols-no">No</label>
+        </td>
+      </tr>
+      <tr>
+        <td>Length of characters:</td>
+        <td>
+          <span id="length-value">10</span>
+          <input type="range" name="length" id="length" min="5" max="25" value="10" />
+        </td>
+      </tr>
+    </table>
+    <button type="button" id="generate-password-btn" class="btn btn-outline-dark">Generate</button>
+    <button type="submit" form="userAccountForm" class="btn btn-primary">Submit New Account</button>
   </form>
     <!-- Bootstrap JS -->
     <script

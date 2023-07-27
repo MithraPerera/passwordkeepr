@@ -17,6 +17,13 @@ th {
   font-weight: bold;
 }
 
+th.no-background {
+  background-color: #F59D2A;
+  color: black;
+  text-align: center;
+  font-size: 16px;
+}
+
 .table-header {
   width: 100%;
   border-bottom: 2px solid #fff;

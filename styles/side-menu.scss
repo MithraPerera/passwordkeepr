@@ -1,9 +1,20 @@
+
+.side-menu {
+  position: sticky;
+  //top: 90;
+  padding: 10px;
+  background-color: #f0f0f0;
+  list-style: none;
+  max-height: calc(100vh - 20px); /* Adjust the height as needed */
+  overflow-y: auto;
+}
+
 ul.side-menu {
   margin: 0;
   background-color: #326696;
   padding-left: 0;
   width: 250px;
-  position: fixed;
+  // position: fixed;
   height: 100vh;
 }
 

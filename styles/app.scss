@@ -29,7 +29,9 @@ footer {
 }
 
 .accounts-section {
-  padding-left: 250px;
+  padding-left: 50px;
+  padding-right: 50px;
+  padding-bottom: 10px;
 }
 
 ::placeholder {
@@ -59,8 +61,6 @@ footer {
   }
 
 select {
-  -webkit-appearance: none;
-  -moz-appearance: none;
   text-indent: 1px;
   text-overflow: '';
 }

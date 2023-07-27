@@ -49,7 +49,7 @@
 
     <main class="main-content">
       <!--side menu displaying categories-->
-      <ul class="side-menu">
+      <ul class="side-menu sticky">
         <li class="li-all">All Categories</li>
         <li class="li-work">Work</li>
         <li class="li-finance">Finances</li>
@@ -58,71 +58,122 @@
       </ul>
       <div class="accounts-section">
         <div class="account-header">
-          <!-- Loop for organization till end line 96-->
           <h1 id="account-header-cat">Organization: <%= organization %>
           </h1>
-          <form method="GET" action="/createAccount">
-            <button type="submit" class="btn btn-outline-dark">Add New Account</button>
-          </form>
         </div>
-        <!-- call to add new account form -->
-        <table class="table table-bordered">
-          <thead>
-            <tr>
-              <th scope="col">Account Name</th>
-              <th scope="col">Account URL</th>
-              <th scope="col">Username</th>
-              <th scope="col">Password</th>
-              <th scope="col">Category</th>
-              <th scope="col"></th>
-            </tr>
-          </thead>
-          <tbody class="table-values">
-            <!-- Loop for accounts -->
-            <% for (const account of accounts) { %>
-              <tr class="account-item" data-category="<%= account.category %>">
-                <td>
-                  <%= account.name %>
-                </td>
-                <td>
-                  <%= account.url %>
-                </td>
-                <td>
-                  <%= account.username %>
-                </td>
-                <td id="passwordCopy">
-                  <%= account.password %>
-                </td>
-                <td>
-                  <%= account.category %>
-                </td>
-                <td>
-                  <button class="copyButton1">Copy</button>
-                  <span id="copyAlert">password copied!</span>
-                </td>
+        <!-- Organization Passwords -->
+        <div class="border">
+          <table class="table table-bordered">
+            <h1 id="account-header-cat">Admin Accounts</h1>
+            <form method="GET" action="/createAccount">
+              <button type="submit" class="btn btn-outline-dark btn_account">Add New Account</button>
+            </form>
+            <thead>
+              <tr>
+                <th>Account Name</th>
+                <th>Account URL</th>
+                <th>Username/Email</th>
+                <th>Password</th>
+                <th>Category</th>
+                <th class="no-background">Copy Password</th>
               </tr>
-              <% } %>
-          </tbody>
-          <script>
-            const copyPassword = function(password) {
-              alert(password);
-            };
-            $(document).ready(function(){
-              $(".copyButton1").click(
-                function(){
-                  const password = $(this).parent().parent().children("#passwordCopy").text();
-                  navigator.clipboard.writeText(password);
-                  $("#copyAlert").fadeIn(500, function() {
+            </thead>
+            <tbody>
+              <% for (const org_account of organizationAccounts) { %>
+                <tr>
+                  <td>
+                    <%= org_account.account_name%>
+                  </td>
+                  <td>
+                    <%= org_account.url %>
+                  </td>
+                  <td>
+                    <%= org_account.username %>
+                  </td>
+                  <td id="passwordCopy" class="hidetext">
+                    <%= org_account.password %>
+                  </td>
+                  <td>
+                    <%= org_account.category_name%>
+                  </td>
+                  <td>
+                    <button class="copyButton1">Copy</button>
+                    <span id="copyAlert">Password copied!</span>
+                  </td>
+                </tr>
+                <% } %>
+            </tbody>
+          </table>
+        </div>
 
-                    setTimeout(function() {
-                      $("#copyAlert").fadeOut(1000);
-                    }, 2000);
+        <!-- Personal Passwords -->
+        <div class="border">
+          <table class="table table-bordered">
+            <h1 id="account-header-cat">Personal Accounts</h1>
+            <form method="GET" action="/createAccount">
+              <button type="submit" class="btn btn-outline-dark btn_account">Add New Account</button>
+            </form>
+            <thead>
+              <tr>
+                <th>Account Name</th>
+                <th>Account URL</th>
+                <th>Username/Email</th>
+                <th>Password</th>
+                <th>Category</th>
+                <th class="no-background">Copy Password</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% for (const personal_account of personalAccounts) { %>
+                <tr>
+                  <td>
+                    <%= personal_account.name %>
+                  </td>
+                  <td>
+                    <%= personal_account.url %>
+                  </td>
+                  <td>
+                    <%= personal_account.username %>
+                  </td>
+                  <td id="passwordCopy" class="hidetext">
+                    <%= personal_account.password %>
+                  </td>
+                  <td>
+                    <%= personal_account.category_name%>
+                  </td>
+                  <td>
+                    <button class="copyButton1">Copy</button>
+                    <span id="copyAlert">Password copied!</span>
+                  </td>
+                </tr>
+                <% } %>
+            </tbody>
+          </table>
+        </div>
 
-                  });
+        <script>
+          const copyPassword = function (password) {
+            alert(password);
+            // window.clipboardData.setData('Text', password);
+            // navigator.clipboard.writeText("unique text password");
+          };
+          $(document).ready(function () {
+            $(".copyButton1").click(
+              function () {
+                const password = $(this).parent().parent().children("#passwordCopy").text();
+                navigator.clipboard.writeText(password);
+                $("#copyAlert").fadeIn(500, function () {
+
+                  setTimeout(function () {
+                    $("#copyAlert").fadeOut(1000);
+                  }, 2000);
+
                 });
-            });
-          </script>
+              });
+          });
+        </script>
         </table>
     </main>
 </body>
+
 </html>

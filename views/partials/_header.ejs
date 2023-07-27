@@ -10,8 +10,8 @@
     <a href="/" class="logo">
       <img src="images/logo.png" alt="PasswordKeepR Logo" height=90>
     </a>
-    
-    
+
+
     <div class="nav-buttons">
       <% if(!user){ %>
         <form method="GET" action="/login">
@@ -26,8 +26,15 @@
           <form method="POST" action="/logout">
             <div class="logged">
               Logged as: <%= user.email%>
-                <button type="submit" class="btn btn-outline-dark">Logout</button>
+              <button type="submit" class="btn btn-outline-dark">Logout</button>
             </div>
+          </form>
+        </div>
+         <div class="form-container">
+          <form method="POST" action="/users">
+            <a href="/users" title="Go to Dashboard">
+              <img src="images/dashboard.png" alt="Logo" width="40" height="40" class="pulsating-image">
+            </a>
           </form>
           <% } %>
     </div>

@@ -17,6 +17,13 @@ th {
   font-weight: bold;
 }
 
+th.no-background {
+  background-color: #F59D2A;
+  color: black;
+  text-align: center;
+  font-size: 16px;
+}
+
 .table-header {
   width: 100%;
   border-bottom: 2px solid #fff;
@@ -42,7 +49,6 @@ tr:nth-child(4n+2) {
 
 .hidden-tr {
   display: none;
-  // justify-content: stretch;
   align-items: center;
   background-color: rgb(240, 240, 240);
   border: 4px solid #F59D2A;
@@ -51,6 +57,10 @@ tr:nth-child(4n+2) {
 .hidden-tr td {
   color: #34495D;
 }
+
+.hidetext { 
+  -webkit-text-security: disc; 
+  }
 
 td button {
   font-size: 16px;
@@ -74,6 +84,12 @@ td button:hover {
   border: 1px solid #F59D2A;
   border-radius: 5px;
 }
+
+.border {
+  padding: 5px 20px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  margin-bottom: 25px;
+  }
 
 .copyPass {
   background-color: #273644;

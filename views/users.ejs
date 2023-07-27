@@ -77,7 +77,7 @@
               <th></th>
             </tr>
           </thead>
-          
+
           <!-- Loop for organization accounts -->
           <tbody>
             <h1 id="account-header-cat">Admin Accounts %>
@@ -104,7 +104,54 @@
                   </td>
                 </tr>
                 <% } %>
-          </tbody>
+              </tbody>
+            </table>
+  
+
+
+          <h1 id="account-header-cat">Personal Accounts</h1>
+          <table class="table table-bordered">
+            <thead>
+              <tr>
+                <th>Account Name</th>
+                <th>Account URL</th>
+                <th>Username</th>
+                <th>Password</th>
+                <th>Category</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody>
+              <!-- Loop for personal accounts -->
+              <% for (const personal_account of personalAccounts) { %>
+                <tr class="account-item" data-category="<%= personal_account.category %>">
+                  <td>
+                    <%= personal_account.name %>
+                  </td>
+                  <td>
+                    <%= personal_account.url %>
+                  </td>
+                  <td>
+                    <%= personal_account.username %>
+                  </td>
+                  <td>
+                    <%= personal_account.password %>
+                  </td>
+                  <td>
+                    <%= personal_account.name%>
+                  </td>
+                  <td>
+                    <button onclick="copyPassword('<%= personal_account.password %>')">Copy</button>
+                  </td>
+                </tr>
+                <% } %>
+            </tbody>
+          </table>
+
+
+
+
+
           <script>
             const copyPassword = function (password) {
               alert(password);

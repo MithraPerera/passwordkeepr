@@ -3,8 +3,8 @@ const db = require('../connection');
 const loginUser = (email, user_password) => {
   return db.query(`
   SELECT * FROM users
-  WHERE email = $1;
-`, [email])
+  WHERE email = $1 AND user_password =$2;
+`, [email,user_password])
     .then((result) => {
       return result.rows[0] || null;
     })

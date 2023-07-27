@@ -26,7 +26,7 @@ router.get("/", (req, res) => {
       };
 
       loginUserdb
-        .getAccountsByUser('1')
+        .getAccountsByUser(user.id)
         .then((accounts) => {
           console.log(accounts);
           const templateVars = {

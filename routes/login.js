@@ -29,14 +29,8 @@ router.post("/", (req, res) => {
       if (!user) {
         return res.status(401).send({ error: "Invalid login credentials" });
       }
-      // Compare the password provided by the user with the hashed password from the database
-      // if (!bcrypt.compareSync(password, user.user_password)) {
-      //   return res.status(401).send({ error: "Invalid login credentials" });
-      // }
-
       req.session.user = user;
       res.redirect('/users');
-      //return res.redirect(`/organizations?user_id=${user.id}`);
     })
     .catch((err) => {
       console.error('Error during login:', err);

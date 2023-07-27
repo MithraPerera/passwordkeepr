@@ -1,4 +1,19 @@
 .password-check{
   text-align: center;
   padding-top: 30px;
+  margin-top: 20px;
+}
+
+.password-check div{
+  font-weight: bold;
+}
+
+.password-check table{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#generated-password{
+  margin: 10px;
 }

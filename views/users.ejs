@@ -82,7 +82,7 @@
           <tbody>
             <h1 id="account-header-cat">Admin Accounts %>
               <% for (const org_account of organizationAccounts) { %>
-                <tr class="account-item" data-category="<%= org_account.category %>">
+                <tr>
                   <td>
                     <%= org_account.account_name%>
                   </td>
@@ -104,75 +104,69 @@
                   </td>
                 </tr>
                 <% } %>
-              </tbody>
-            </table>
-  
+          </tbody>
+        </table>
 
-
-          <h1 id="account-header-cat">Personal Accounts</h1>
-          <table class="table table-bordered">
-            <thead>
+        <h1 id="account-header-cat">Personal Accounts</h1>
+        <table class="table table-bordered">
+          <thead>
+            <tr>
+              <th>Account Name</th>
+              <th>Account URL</th>
+              <th>Username</th>
+              <th>Password</th>
+              <th>Category</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            <!-- Loop for personal accounts -->
+            <% for (const personal_account of personalAccounts) { %>
               <tr>
-                <th>Account Name</th>
-                <th>Account URL</th>
-                <th>Username</th>
-                <th>Password</th>
-                <th>Category</th>
-                <th></th>
+                <td>
+                  <%= personal_account.name %>
+                </td>
+                <td>
+                  <%= personal_account.url %>
+                </td>
+                <td>
+                  <%= personal_account.username %>
+                </td>
+                <td>
+                  <%= personal_account.password %>
+                </td>
+                <td>
+                  <%= personal_account.category_name%>
+                </td>
+                <td>
+                  <button onclick="copyPassword('<%= personal_account.password %>')">Copy</button>
+                </td>
               </tr>
-            </thead>
-            <tbody>
-              <!-- Loop for personal accounts -->
-              <% for (const personal_account of personalAccounts) { %>
-                <tr class="account-item" data-category="<%= personal_account.category %>">
-                  <td>
-                    <%= personal_account.name %>
-                  </td>
-                  <td>
-                    <%= personal_account.url %>
-                  </td>
-                  <td>
-                    <%= personal_account.username %>
-                  </td>
-                  <td>
-                    <%= personal_account.password %>
-                  </td>
-                  <td>
-                    <%= personal_account.name%>
-                  </td>
-                  <td>
-                    <button onclick="copyPassword('<%= personal_account.password %>')">Copy</button>
-                  </td>
-                </tr>
-                <% } %>
-            </tbody>
-          </table>
+              <% } %>
+          </tbody>
+        </table>
 
+        <script>
+          const copyPassword = function(password) {
+            alert(password);
+            // window.clipboardData.setData('Text', password);
+            // navigator.clipboard.writeText("unique text password");
+          };
+          $(document).ready(function () {
+            $(".copyButton1").click(
+              function () {
+                const password = $(this).parent().parent().children("#passwordCopy").text();
+                navigator.clipboard.writeText(password);
+                $("#copyAlert").fadeIn(500, function () {
 
+                  setTimeout(function() {
+                    $("#copyAlert").fadeOut(1000);
+                  }, 2000);
 
-
-
-          <script>
-            const copyPassword = function (password) {
-              alert(password);
-              // window.clipboardData.setData('Text', password);
-              // navigator.clipboard.writeText("unique text password");
-            };
-            $(document).ready(function () {
-              $(".copyButton1").click(
-                function () {
-                  const password = $(this).parent().parent().children("#passwordCopy").text();
-                  navigator.clipboard.writeText(password);
-                  $("#copyAlert").fadeIn(500, function () {
-
-                    setTimeout(function () {
-                      $("#copyAlert").fadeOut(1000);
-                    }, 2000);
-
-                  });
                 });
-            });
-          </script>
+              });
+          });
+        </script>
         </table>
     </main>
 </body>

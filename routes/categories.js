@@ -17,7 +17,7 @@ router.get('/', (req, res) => {
 });
 
 // Route to display specific category - Ex. /categories/2 displays Social sites
-router.get('/:id', (req, res) => {
+router.get('/:category', (req, res) => {
   if (req.session.user) {
     getAllCategorySites(req.params.id)
       .then((data) => {

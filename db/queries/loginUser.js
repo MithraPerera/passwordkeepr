@@ -44,9 +44,11 @@ const getAccountsByOrganizations = (user_Id, organization_Id) => {
     });
 };
 
-const getPersonalAccounts = (user_Id, organization_Id) => {
+  const getPersonalAccounts = (user_Id, organization_Id) => {
   return db.query(`
-  SELECT * from accounts
+  SELECT accounts.*, categories.name as category_name
+  FROM accounts
+  JOIN categories ON accounts.category_id = categories.id 
   where user_id = $1 AND organization_id IS NULL;
   `, [user_Id])
     .then((result) => {

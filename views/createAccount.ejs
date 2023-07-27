@@ -46,71 +46,103 @@
 
 <body>
   <%- include('partials/_header') %>
-  <form action="/createNewAccount" method="POST" class="userAccountForm">
+
+<div class="accountSubmissionBody">
+  <h2>Create New Account</h2>
+  <br>
+  <form action="/createAccount" method="POST" id="userAccountForm" class="userAccountForm">
     <table class="userAccountInputs">
       <tr>
         <td>Name</td>
         <td>
-          <input type="text" name="Name">
+          <input type="text" name="name" placeholder="enter name">
+        </td>
+      </tr>
+
+      <tr>
+        <td>URL</td>
+        <td>
+          <input type="url" name="url" placeholder="enter URL">
         </td>
       </tr>
       <tr>
         <td>Username</td>
         <td>
-          <input type="text" name="Username">
+          <input type="text" name="username" placeholder="enter username">
         </td>
       </tr>
+      <tr>
+        <td>Category</td>
+        <td>
+          <select name="category">
+            <option value="4">Work</option>
+            <option value="1">Finance</option>
+            <option value="2">Social</option>
+            <option value="3">Entertainment</option>
+          </select>
+        </td>
+      </tr>
+      <input type="hidden" id="created-on" name="created_on">
       <tr>
         <td>Password</td>
         <td>
-          <input type="text" id="generated-password">
+          <input type="password" id="generated-password" name="password" placeholder="enter or generate pass">
         </td>
       </tr>
       <tr>
-        <td>URL</td>
         <td>
-          <input type="text" name="URL">
+          <input type="checkbox" id="toggle-password-visibility"> Show Password
         </td>
       </tr>
     </table>
-    <table class="password-generator">
-      <div>Password Generator</div>
-      <tr>
-        <td>Include Uppercase Letters</td>
-        <td>
-          <input type="checkbox" name="uppercase" value="yes" id="uppercase-yes" checked>
-          <label for="uppercase-yes">Yes</label>
-          <input type="checkbox" name="uppercase" value="no" id="uppercase-no">
-          <label for="uppercase-no">No</label>
-        </td>
-      </tr>
-      <tr>
-        <td>Include Lowercase Letters</td>
-        <td>
-          <input type="checkbox" name="lowercase" value="yes" id="lowercase-yes" checked>
-          <label for="lowercase-yes">Yes</label>
-          <input type="checkbox" name="lowercase" value="no" id="lowercase-no">
-          <label for="lowercase-no">No</label>
-        </td>
-      </tr>
-      <tr>
-        <td>Include Numbers</td>
-        <td>
-          <input type="checkbox" name="numbers" value="yes" id="numbers-yes" checked>
-          <label for="numbers-yes">Yes</label>
-          <input type="checkbox" name="numbers" value="no" id="numbers-no">
-          <label for="numbers-no">No</label>
-        </td>
-      </tr>
-      <tr>
-        <td>Include Symbols</td>
-        <td>
-          <input type="checkbox" name="symbols" value="yes" id="symbols-yes" checked>
-          <label for="symbols-yes">Yes</label>
-          <input type="checkbox" name="symbols" value="no" id="symbols-no">
-          <label for="symbols-no">No</label>
-        </td>
-      </tr>
+  </form>
+
+  <br>
+
+  <div class="password-generator">
+    <h5>Password Generator</h5>
+    <form id="passwordGeneratorForm">
+      <table>
+        <div>
+          <tr>
+            <td>Uppercase</td>
+            <td>
+              <input type="checkbox" name="uppercase" value="yes" id="uppercase-yes" checked>
+              <label for="uppercase-yes">Yes</label>
+              <input type="checkbox" name="uppercase" value="no" id="uppercase-no">
+              <label for="uppercase-no">No</label>
+            </td>
+          </tr>
+          <tr>
+            <td>Lowercase</td>
+            <td>
+              <input type="checkbox" name="lowercase" value="yes" id="lowercase-yes" checked>
+              <label for="lowercase-yes">Yes</label>
+              <input type="checkbox" name="lowercase" value="no" id="lowercase-no">
+              <label for="lowercase-no">No</label>
+            </td>
+          </tr>
+        </div>
+        <div>
+          <tr>
+            <td>Numbers</td>
+            <td>
+              <input type="checkbox" name="numbers" value="yes" id="numbers-yes" checked>
+              <label for="numbers-yes">Yes</label>
+              <input type="checkbox" name="numbers" value="no" id="numbers-no">
+              <label for="numbers-no">No</label>
+            </td>
+          </tr>
+          <tr>
+            <td>Symbols</td>
+            <td>
+              <input type="checkbox" name="symbols" value="yes" id="symbols-yes" checked>
+              <label for="symbols-yes">Yes</label>
+              <input type="checkbox" name="symbols" value="no" id="symbols-no">
+              <label for="symbols-no">No</label>
+            </td>
+          </tr>
+        </div>
       <tr>
         <td>Length of characters:</td>
         <td>
@@ -118,10 +150,50 @@
           <input type="range" name="length" id="length" min="5" max="25" value="10" />
         </td>
       </tr>
-    </table>
-    <button type="button" id="generate-password-btn" class="btn btn-outline-dark">Generate</button>
-    <button type="submit" form="userAccountForm" class="btn btn-primary">Submit New Account</button>
-  </form>
+      <tr>
+        <td>
+          <button type="button" id="generate-password-btn" class="btn btn-outline-dark">Generate</button>
+          <button type="submit" id="submit-btn" class="btn btn-primary">Submit New Account</button>
+        </td>
+      </tr>
+      </table>
+    </form>
+  </div>
+</div>
+
+  <script>
+    $(document).ready(function() {
+      $('#toggle-password-visibility').change(function() {
+        if($(this).is(':checked')) {
+          $('#generated-password').attr('type', 'text');
+        } else {
+          $('#generated-password').attr('type', 'password');
+        }
+      });
+
+      $('#submit-btn').click(function(e) {
+        e.preventDefault(); // prevent the default form submission
+        // $('#userAccountForm').submit(); // manually submit the Create New Account form
+      });
+    });
+
+    //function to pass the created_on date from the hidden input field
+    $(document).ready(function() {
+      $('#submit-btn').click(function(e) {
+        e.preventDefault();
+
+        // Get the current date and time
+        var now = new Date().toISOString();
+
+        // Set the value of the hidden input field
+        $('#created-on').val(now);
+
+        // Submit the form
+        $('#userAccountForm').submit();
+      });
+    });
+  </script>
+
     <!-- Bootstrap JS -->
     <script
       src="https://code.jquery.com/jquery-3.3.1.slim.min.js"

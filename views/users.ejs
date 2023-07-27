@@ -126,6 +126,7 @@
             <tbody>
               <% for (const personal_account of personalAccounts) { %>
                 <tr>
+
                   <td>
                     <%= personal_account.name %>
                   </td>
@@ -139,11 +140,10 @@
                     <%= personal_account.password %>
                   </td>
                   <td>
-                    <%= personal_account.category_name%>
+                    <%= personal_account.category_name %>
                   </td>
                   <td>
                     <button class="copyButton1">Copy</button>
-                    <span id="copyAlert">Password copied!</span>
                   </td>
                 </tr>
                 <% } %>
@@ -154,8 +154,8 @@
         <script>
           const copyPassword = function (password) {
             alert(password);
-            // window.clipboardData.setData('Text', password);
-            // navigator.clipboard.writeText("unique text password");
+            window.clipboardData.setData('Text', password);
+            navigator.clipboard.writeText("unique text password");
           };
           $(document).ready(function () {
             $(".copyButton1").click(

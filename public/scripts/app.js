@@ -62,26 +62,26 @@ $(() => {
 });
 
 // Category Button Route
-$(document).ready(function() {
-  $(".categoryButton").on("click", function(event) {
-    const val = $(this).val();
-    let categoryStr = '';
-    switch (val) {
-      case 1:
-        categoryStr = 'finance';
-        break;
-      case 2:
-        categoryStr = 'social';
-        break;
-      case 3:
-        categoryStr = 'entertainment';
-        break;
-      case 4:
-        categoryStr = 'work';
-        break;
-      default:
-        break;
-    }
-    $.get(`/users/category/${categoryStr}`);
-  });
-});
+// $(document).ready(function() {
+//   $(".categoryButton").on("click", function(event) {
+//     const val = Number($(this).val());
+//     let categoryStr = '';
+//     switch (val) {
+//       case 1:
+//         categoryStr = 'finance';
+//         break;
+//       case 2:
+//         categoryStr = 'social';
+//         break;
+//       case 3:
+//         categoryStr = 'entertainment';
+//         break;
+//       case 4:
+//         categoryStr = 'work';
+//         break;
+//       default:
+//         break;
+//     }
+//     $.get(`/users/category/${categoryStr}`);
+//   });
+// });

@@ -11,14 +11,14 @@ th {
   text-align: left;
   padding: 15px 30px 15px 30px;
   font-size: 18px;
-  font-family: 'Poppins', sans-serif;
+  font-family: "Poppins", sans-serif;
   font-weight: 300;
   color: #fff;
   font-weight: bold;
 }
 
 th.no-background {
-  background-color: #F59D2A;
+  background-color: #f59d2a;
   color: black;
   text-align: center;
   font-size: 16px;
@@ -34,12 +34,13 @@ td {
   text-align: left;
   color: #fff;
   font-size: 18px;
-  font-family: 'Nixie One', serif;
+  font-family: "Nixie One", serif;
   font-weight: 300;
+  word-wrap: break-word;
 }
 
-tr:nth-child(4n+2) {
-  background-color: #34495D;
+tr:nth-child(4n + 2) {
+  background-color: #34495d;
 }
 
 .more-td {
@@ -51,16 +52,19 @@ tr:nth-child(4n+2) {
   display: none;
   align-items: center;
   background-color: rgb(240, 240, 240);
-  border: 4px solid #F59D2A;
+  border: 4px solid #f59d2a;
 }
 
 .hidden-tr td {
-  color: #34495D;
+  color: #34495d;
 }
 
-.hidetext { 
-  -webkit-text-security: disc; 
-  }
+.hidetext {
+  -webkit-text-security: disc;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
 
 td button {
   font-size: 16px;
@@ -69,7 +73,7 @@ td button {
   border-radius: 5px;
   margin-left: auto;
   margin-right: auto;
-  font-family: 'Poppins', sans-serif;
+  font-family: "Poppins", sans-serif;
   font-weight: 500;
   padding: 5px 10px;
   display: flex;
@@ -78,10 +82,10 @@ td button {
 }
 
 td button:hover {
-  background-color: #14213D;
-  color: #F59D2A;
+  background-color: #14213d;
+  color: #f59d2a;
   cursor: pointer;
-  border: 1px solid #F59D2A;
+  border: 1px solid #f59d2a;
   border-radius: 5px;
 }
 
@@ -89,7 +93,7 @@ td button:hover {
   padding: 5px 20px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
   margin-bottom: 25px;
-  }
+}
 
 .copyPass {
   background-color: #273644;
@@ -97,7 +101,7 @@ td button:hover {
   border: none;
 }
 
-#copyAlert{
+#copyAlert {
   display: none;
   color: pink;
   font-size: large;

@@ -53,20 +53,19 @@
       <ul class="side-menu sticky">
         <li class="li-all">Categories</li>
         <li class="li-finance">
-          <button type="button" class="btn btn-primary btn-lg categoryButton" name="categorySelection"
-            value="1">Finance</button>
+          <a href="/users" class="btn btn-primary btn-lg categoryButton">All</a>
+        </li>
+        <li class="li-finance">
+          <a href="/users/category/finance" class="btn btn-primary btn-lg categoryButton">Finance</a>
         </li>
         <li class="li-social">
-          <button type="button" class="btn btn-primary btn-lg categoryButton" name="categorySelection"
-            value="2">Social</button>
+          <a href="/users/category/social" class="btn btn-primary btn-lg categoryButton">Social</a>
         </li>
         <li class="li-entertainment">
-          <button type="button" class="btn btn-primary btn-lg categoryButton" name="categorySelection"
-            value="3">Entertainment</button>
+          <a href="/users/category/entertainment" class="btn btn-primary btn-lg categoryButton">Entertainment</a>
         </li>
         <li class="li-work">
-          <button type="button" class="btn btn-primary btn-lg categoryButton" name="categorySelection"
-            value="4">Work</button>
+          <a href="/users/category/work" class="btn btn-primary btn-lg categoryButton">Work</a>
         </li>
       </ul>
       <div class="accounts-section">
@@ -100,7 +99,7 @@
               <% for (const org_account of organizationAccounts) { %>
                 <tr>
                   <td>
-                    <%= org_account.account_name%>
+                    <%= org_account.account_name %>
                   </td>
                   <td>
                     <%= org_account.url %>
@@ -114,7 +113,7 @@
                   <td>
                     <%= org_account.category_name%>
                   </td>
-                  <td>
+                  <td id="table-buttons">
                     <button class="copyButton1">Copy</button>
                     <!-- <span id="copyAlert">Password copied!</span> -->
                   </td>

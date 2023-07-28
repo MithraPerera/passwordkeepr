@@ -53,6 +53,15 @@
   <form action="/createAccount" method="POST" id="userAccountForm" class="userAccountForm">
     <table class="userAccountInputs">
       <tr>
+        <td>Type</td>
+        <td>
+          <select name="type">
+            <option value="1">Admin</option>
+            <option value="Null">Personal</option>
+          </select>
+        </td>
+      </tr>
+      <tr>
         <td>Name</td>
         <td>
           <input type="text" name="name" placeholder="enter name">
@@ -162,18 +171,27 @@
 </div>
 
   <script>
-    $(document).ready(function() {
-      $('#toggle-password-visibility').change(function() {
-        if($(this).is(':checked')) {
-          $('#generated-password').attr('type', 'text');
-        } else {
-          $('#generated-password').attr('type', 'password');
-        }
-      });
+    $(document).ready(function () {
+      $(".copyButton1").click(function () {
+        const password = $(this).parent().parent().children("#passwordCopy").text();
+        navigator.clipboard.writeText(password);
 
-      $('#submit-btn').click(function(e) {
-        e.preventDefault(); // prevent the default form submission
-        // $('#userAccountForm').submit(); // manually submit the Create New Account form
+        // Get the position of the .copy-container relative to the document
+        const containerOffset = $(this).parent().offset();
+
+        // Position the .copyAlert based on the .copy-container's position
+        $(this)
+          .parent()
+          .find(".copyAlert")
+          .css({
+            top: containerOffset.top - $(window).scrollTop() - 30 + "px", // Adjust the positioning as needed
+            left: containerOffset.left - $(window).scrollLeft() + "px",
+          })
+          .fadeIn(500, function () {
+            setTimeout(function () {
+              $(".copyAlert").fadeOut(1000);
+            }, 2000);
+          });
       });
     });
 

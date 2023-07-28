@@ -61,10 +61,13 @@
           <h1 id="account-header-cat">Organization: <%= organization %>
           </h1>
         </div>
+        <div id="copySuccessAlert" class="alert alert-success" style="display: none;">
+          Password copied successfully!
+        </div>
         <!-- Organization Passwords -->
         <div class="border">
           <table class="table table-bordered">
-            <h1 id="account-header-cat">Admin Accounts</h1>
+            <h1 id="account-header-cat"><%= organization %> Accounts</h1>
             <form method="GET" action="/createAccount">
               <button type="submit" class="btn btn-outline-dark btn_account">Add New Account</button>
             </form>
@@ -98,7 +101,7 @@
                   </td>
                   <td>
                     <button class="copyButton1">Copy</button>
-                    <span id="copyAlert">Password copied!</span>
+                    <!-- <span id="copyAlert">Password copied!</span> -->
                   </td>
                 </tr>
                 <% } %>
@@ -158,18 +161,17 @@
             navigator.clipboard.writeText("unique text password");
           };
           $(document).ready(function () {
-            $(".copyButton1").click(
-              function () {
-                const password = $(this).parent().parent().children("#passwordCopy").text();
-                navigator.clipboard.writeText(password);
-                $("#copyAlert").fadeIn(500, function () {
+            $(".copyButton1").click(function () {
+              const password = $(this).parent().parent().children("#passwordCopy").text();
+              navigator.clipboard.writeText(password);
 
-                  setTimeout(function () {
-                    $("#copyAlert").fadeOut(1000);
-                  }, 2000);
-
-                });
+              // Show the success alert at the top of the page
+              $("#copySuccessAlert").fadeIn(500, function () {
+                setTimeout(function () {
+                  $("#copySuccessAlert").fadeOut(1000);
+                }, 2000);
               });
+            });
           });
         </script>
         </table>

@@ -24,6 +24,9 @@ router.post("/", (req, res) => {
   const user_id = req.session.user.id;
   const orgId = req.session.user.organization_id;
   let category = req.body.category;
+  let type = req.body.type;
+
+  console.log('type: ', type);
 
   newAccount(name, url, username, password, category, user_id, orgId, created_on)
     .then((data) => {

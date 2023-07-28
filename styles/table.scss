@@ -36,6 +36,9 @@ td {
   font-size: 18px;
   font-family: 'Nixie One', serif;
   font-weight: 300;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 tr:nth-child(4n+2) {
@@ -58,8 +61,8 @@ tr:nth-child(4n+2) {
   color: #34495D;
 }
 
-.hidetext { 
-  -webkit-text-security: disc; 
+.hidetext {
+  -webkit-text-security: disc;
   }
 
 td button {
@@ -102,4 +105,17 @@ td button:hover {
   color: pink;
   font-size: large;
   text-align: center;
+}
+
+td:nth-child(2) {
+  font-size: 12px;
+}
+
+td:nth-child(3) {
+  font-size: 14px;
+}
+
+.copy-container {
+  position: relative;
+  display: inline-block;
 }

@@ -61,27 +61,12 @@ $(() => {
   }
 });
 
-// Category Button Route
-// $(document).ready(function() {
-//   $(".categoryButton").on("click", function(event) {
-//     const val = Number($(this).val());
-//     let categoryStr = '';
-//     switch (val) {
-//       case 1:
-//         categoryStr = 'finance';
-//         break;
-//       case 2:
-//         categoryStr = 'social';
-//         break;
-//       case 3:
-//         categoryStr = 'entertainment';
-//         break;
-//       case 4:
-//         categoryStr = 'work';
-//         break;
-//       default:
-//         break;
-//     }
-//     $.get(`/users/category/${categoryStr}`);
-//   });
-// });
+// Change clicked buttons background colour
+$(document).ready(function() {
+  console.log(location.pathname);
+  $(`.side-menu a[href='${location.pathname}'`).addClass('active');
+  // $(".categoryButton").on("click", function(event) {
+  //   event.preventDefault();
+  //   $(this).css('background-color', '#f59d2a');
+  // });
+});

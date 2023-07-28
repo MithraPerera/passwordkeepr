@@ -65,8 +65,4 @@ $(() => {
 $(document).ready(function() {
   console.log(location.pathname);
   $(`.side-menu a[href='${location.pathname}'`).addClass('active');
-  // $(".categoryButton").on("click", function(event) {
-  //   event.preventDefault();
-  //   $(this).css('background-color', '#f59d2a');
-  // });
 });

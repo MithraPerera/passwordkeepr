@@ -29,12 +29,12 @@ const getOrganizationsByUser = (user_Id) => {
 };
 const getAccountsByOrganizations = (user_Id, organization_Id) => {
   return db.query(`
-    SELECT users.*, organizations.*, accounts.*, categories.*, categories.name as category_name, accounts.name as account_name
+    SELECT users.*, organizations.*, accounts.*, categories.*, categories.name as category_name, accounts.name as account_name, accounts.id as id
     FROM accounts
-    JOIN users ON accounts.user_id = users.id 
-    JOIN organizations ON accounts.organization_id = organizations.id 
-    JOIN categories ON accounts.category_id = categories.id 
-    WHERE users.id = $1 AND organizations.id  = $2;
+    JOIN users ON accounts.user_id = users.id
+    JOIN organizations ON accounts.organization_id = organizations.id
+    JOIN categories ON accounts.category_id = categories.id
+    WHERE accounts.user_id = $1 AND accounts.organization_id  = $2;
   `, [user_Id, organization_Id])
     .then((result) => {
       return result.rows || [];
@@ -48,7 +48,7 @@ const getAccountsByOrganizations = (user_Id, organization_Id) => {
   return db.query(`
   SELECT accounts.*, categories.name as category_name
   FROM accounts
-  JOIN categories ON accounts.category_id = categories.id 
+  JOIN categories ON accounts.category_id = categories.id
   where user_id = $1 AND organization_id IS NULL;
   `, [user_Id])
     .then((result) => {

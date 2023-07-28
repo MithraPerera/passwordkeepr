@@ -60,3 +60,9 @@ $(() => {
     return password;
   }
 });
+
+// Change clicked buttons background colour
+$(document).ready(function() {
+  console.log(location.pathname);
+  $(`.side-menu a[href='${location.pathname}'`).addClass('active');
+});

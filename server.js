@@ -52,7 +52,7 @@ app.use('/home', homeRoute);
 app.use('/register', registerRoute);
 app.use('/login', loginRoute);
 app.use('/logout', logoutRoute);
-app.use('/category', categoryRoute);
+app.use('/users/category/', categoryRoute);
 app.use('/createAccount', createAccountRoute);
 
 // Redirect the root path to '/home'

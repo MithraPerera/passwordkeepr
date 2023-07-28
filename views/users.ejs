@@ -47,7 +47,6 @@
 
 <body>
   <%- include('partials/_header') %>
-
     <main class="main-content">
       <!--side menu displaying categories-->
       <ul class="side-menu sticky">
@@ -102,7 +101,8 @@
                 <th>Username/Email</th>
                 <th>Password</th>
                 <th>Category</th>
-                <th class="no-background">Copy/Edit Password</th>
+                <th class="no-background">Copy Password</th>
+                <th class="change-background">Edit/Delete Account</th>
               </tr>
             </thead>
             <tbody>
@@ -125,10 +125,15 @@
                   </td>
                   <td id="table-buttons">
                     <button class="copyButton1">Copy</button>
-                    <form method="GET" action="/editaccount">
+                  </td>
+                  <td>
+                    <form method="GET" action="/editAccount/<%= org_account.id %>">
                       <button type="submit" class="editButton">Edit</button>
                     </form>
-                    &nbsp &nbsp &nbsp &nbsp
+                    &nbsp
+                    <form method="POST" action="/deleteaccount/<%= org_account.id %>" onsubmit="return confirm('Are you sure you want to delete this account?');">
+                      <button type="submit" class="deleteButton">Delete</button>
+                    </form>
                   </td>
                 </tr>
                 <% } %>
@@ -150,7 +155,8 @@
                 <th>Username/Email</th>
                 <th>Password</th>
                 <th>Category</th>
-                <th class="no-background">Copy/Edit Password</th>
+                <th class="no-background">Copy Password</th>
+                <th class="change-background">Edit/Delete Account</th>
               </tr>
             </thead>
             <tbody>
@@ -174,10 +180,15 @@
                   </td>
                   <td>
                     <button class="copyButton1">Copy</button>
-                    <form method="GET" action="/editaccount">
+                  </td>
+                  <td>
+                    <form method="GET" action="/editAccount/<%= personal_account.id %>">
                       <button type="submit" class="editButton">Edit</button>
                     </form>
-                    &nbsp &nbsp &nbsp &nbsp
+                    &nbsp
+                    <form method="POST" action="/deleteaccount/<%= personal_account.id %>" onsubmit="return confirm('Are you sure you want to delete this account?');">
+                      <button type="submit" class="deleteButton">Delete</button>
+                  </form>
                   </td>
                 </tr>
                 <% } %>

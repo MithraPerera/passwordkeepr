@@ -3,19 +3,24 @@
 const express = require("express");
 const router = express.Router();
 const cookieSession = require("cookie-session");
-const { newAccount } = require('../db/queries/newAccountQueries.js');
+const { newAccount, getAccountById, updateAccount } = require('../db/queries/newAccountQueries.js');
 
-// New route to login page
-router.get('/', (req, res) => {
+router.get("/:id", async (req, res) => {
+  console.log(req.params);
 
+  const account = await getAccountById(req.params.id);
   const templateVars = {
-    user: req.session.user
+    user: req.session.user,
+    account
   };
+  console.log('account: ', account);
 
   res.render('editAccount', templateVars);
 });
 
-router.post("/", (req, res) => {
+router.post("/:id", (req, res) => {
+  console.log('req.params: ', req.params);
+  const account = getAccountById(req.params.id);
   const name = req.body.name;
   const url = req.body.url;
   const username = req.body.username;
@@ -25,18 +30,17 @@ router.post("/", (req, res) => {
   let orgId = req.session.user.organization_id;
   let category = req.body.category;
   let type = req.body.type;
-
-  console.log('type: ', type);
+  const id = req.params.id;
 
   if(type === "personal") {
     orgId = null;
-    console.log("is !type passing for type set to personal?");
-    console.log("orgId: ", orgId);
   }
-  console.log("orgId: ", orgId);
-  console.log("type: ", type);
 
-  newAccount(name, url, username, password, category, user_id, orgId, created_on)
+
+  console.log('Values going into updateAccount:', name, url, username, password, category, user_id, orgId, created_on, id);
+
+
+  updateAccount(name, url, username, password, category, user_id, orgId, created_on, id)
     .then((data) => {
       console.log("data params: ", data);
       res.redirect('/users');

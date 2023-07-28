@@ -1,4 +1,3 @@
-
 .side-menu {
   position: sticky;
   top: 0;
@@ -24,13 +23,13 @@ ul.side-menu {
   font-size: 20px;
   list-style: none;
   padding: 15px;
-  transition: width .3s;
-  font-family: 'Nixie One', serif;
+  transition: width 0.3s;
+  font-family: "Nixie One", serif;
   font-weight: 400;
 }
 
 .side-menu .li-all {
-  font-family: 'Poppins', sans-serif;
+  font-family: "Poppins", sans-serif;
   font-weight: bold;
 }
 
@@ -39,10 +38,37 @@ ul.side-menu {
   cursor: pointer;
 }
 
-.side-menu li:nth-child(odd) {
+.side-menu li:nth-child(1) {
   background-color: #273644;
 }
 
 .side-menu li:nth-child(even) {
   background-color: #326696;
+}
+
+.categoryButton {
+  background-color: #273644;
+  width: 10em;
+}
+
+.categoryButton:hover {
+  background-color: #f59d2a;
+}
+
+.categoryButtonSelected {
+  background-color: #f59d2a;
+}
+
+// .categorybutton: {
+//   background-color: #14213d;
+//   color: #f59d2a;
+//   transform: translateY(2px);
+// }
+
+// .categorybutton:focus {
+//   background-color: red;
+// }
+
+.active .categoryButton {
+  background-color: #f59d2a;
 }

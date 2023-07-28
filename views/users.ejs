@@ -102,7 +102,7 @@
                 <th>Username/Email</th>
                 <th>Password</th>
                 <th>Category</th>
-                <th class="no-background">Copy Password</th>
+                <th class="no-background">Copy/Edit Password</th>
               </tr>
             </thead>
             <tbody>
@@ -125,7 +125,10 @@
                   </td>
                   <td id="table-buttons">
                     <button class="copyButton1">Copy</button>
-                    <!-- <span id="copyAlert">Password copied!</span> -->
+                    <form method="GET" action="/editaccount">
+                      <button type="submit" class="editButton">Edit</button>
+                    </form>
+                    &nbsp &nbsp &nbsp &nbsp
                   </td>
                 </tr>
                 <% } %>
@@ -147,7 +150,7 @@
                 <th>Username/Email</th>
                 <th>Password</th>
                 <th>Category</th>
-                <th class="no-background">Copy Password</th>
+                <th class="no-background">Copy/Edit Password</th>
               </tr>
             </thead>
             <tbody>
@@ -171,6 +174,10 @@
                   </td>
                   <td>
                     <button class="copyButton1">Copy</button>
+                    <form method="GET" action="/editaccount">
+                      <button type="submit" class="editButton">Edit</button>
+                    </form>
+                    &nbsp &nbsp &nbsp &nbsp
                   </td>
                 </tr>
                 <% } %>

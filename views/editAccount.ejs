@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>PasswordKeepR</title>
+
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://fonts.googleapis.com/css2?family=Nixie+One&family=Poppins:wght@300;400;600&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
+    integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous" />
+
+  <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" />
+  <link rel="stylesheet" href="/vendor/border-box.css" />
+  <link rel="stylesheet" href="/styles/main.css" />
+  <link rel="stylesheet" href="/styles/layout.css" />
+  <link rel="stylesheet" href="/styles/header.css" />
+  <link rel="stylesheet" href="/styles/createAccount.css" />
+
+
+  <script src="/vendor/jquery-3.0.0.js"></script>
+  <script defer src="/scripts/app.js"></script>
+  <style>
+    html {
+      background: #ddd6f3;
+      /* fallback for old browsers */
+      background: -webkit-linear-gradient(to right, #ffffff, #daf1f8);
+      /* Chrome 10-25, Safari 5.1-6 */
+      background: linear-gradient(to right, #ffffff, #daf1f8);
+      /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    }
+
+    body {
+      background: #ddd6f3;
+      /* fallback for old browsers */
+      background: -webkit-linear-gradient(to right, #ffffff, #daf1f8);
+      /* Chrome 10-25, Safari 5.1-6 */
+      background: linear-gradient(to right, #ffffff, #daf1f8);
+      /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    }
+
+  </style>
+</head>
+
+<body>
+  <%- include('partials/_header') %>
+
+<div class="accountSubmissionBody">
+  <h2>Edit Existing Account</h2>
+  <br>
+  <form action="/createAccount" method="POST" id="userAccountForm" class="userAccountForm">
+    <table class="userAccountInputs">
+      <tr>
+        <td>Type</td>
+        <td>
+          <select name="type">
+            <option value="organization">Organization</option>
+            <option value="personal">Personal</option>
+          </select>
+        </td>
+      </tr>
+      <tr>
+        <td>Name</td>
+        <td>
+          <input type="text" name="name" placeholder="enter name">
+        </td>
+      </tr>
+
+      <tr>
+        <td>URL</td>
+        <td>
+          <input type="url" name="url" placeholder="enter URL">
+        </td>
+      </tr>
+      <tr>
+        <td>Username</td>
+        <td>
+          <input type="text" name="username" placeholder="enter username">
+        </td>
+      </tr>
+      <tr>
+        <td>Category</td>
+        <td>
+          <select name="category">
+            <option value="4">Work</option>
+            <option value="1">Finance</option>
+            <option value="2">Social</option>
+            <option value="3">Entertainment</option>
+          </select>
+        </td>
+      </tr>
+      <input type="hidden" id="created-on" name="created_on">
+      <tr>
+        <td>Password</td>
+        <td>
+          <input type="password" id="generated-password" name="password" placeholder="enter or generate pass">
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <input type="checkbox" id="toggle-password-visibility"> Show Password
+        </td>
+      </tr>
+    </table>
+  </form>
+
+  <br>
+
+  <div class="password-generator">
+    <h5>Password Generator</h5>
+    <form id="passwordGeneratorForm">
+      <table>
+        <div>
+          <tr>
+            <td>Uppercase</td>
+            <td>
+              <input type="checkbox" name="uppercase" value="yes" id="uppercase-yes" checked>
+              <label for="uppercase-yes">Yes</label>
+              <input type="checkbox" name="uppercase" value="no" id="uppercase-no">
+              <label for="uppercase-no">No</label>
+            </td>
+          </tr>
+          <tr>
+            <td>Lowercase</td>
+            <td>
+              <input type="checkbox" name="lowercase" value="yes" id="lowercase-yes" checked>
+              <label for="lowercase-yes">Yes</label>
+              <input type="checkbox" name="lowercase" value="no" id="lowercase-no">
+              <label for="lowercase-no">No</label>
+            </td>
+          </tr>
+        </div>
+        <div>
+          <tr>
+            <td>Numbers</td>
+            <td>
+              <input type="checkbox" name="numbers" value="yes" id="numbers-yes" checked>
+              <label for="numbers-yes">Yes</label>
+              <input type="checkbox" name="numbers" value="no" id="numbers-no">
+              <label for="numbers-no">No</label>
+            </td>
+          </tr>
+          <tr>
+            <td>Symbols</td>
+            <td>
+              <input type="checkbox" name="symbols" value="yes" id="symbols-yes" checked>
+              <label for="symbols-yes">Yes</label>
+              <input type="checkbox" name="symbols" value="no" id="symbols-no">
+              <label for="symbols-no">No</label>
+            </td>
+          </tr>
+        </div>
+      <tr>
+        <td>Length of characters:</td>
+        <td>
+          <span id="length-value">10</span>
+          <input type="range" name="length" id="length" min="5" max="25" value="10" />
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <button type="button" id="generate-password-btn" class="btn btn-outline-dark">Generate</button>
+          <button type="submit" id="submit-btn" class="btn btn-primary">Submit New Account</button>
+        </td>
+      </tr>
+      </table>
+    </form>
+  </div>
+</div>
+
+  <script>
+    $(document).ready(function () {
+      $(".copyButton1").click(function () {
+        const password = $(this).parent().parent().children("#passwordCopy").text();
+        navigator.clipboard.writeText(password);
+
+        // Get the position of the .copy-container relative to the document
+        const containerOffset = $(this).parent().offset();
+
+        // Position the .copyAlert based on the .copy-container's position
+        $(this)
+          .parent()
+          .find(".copyAlert")
+          .css({
+            top: containerOffset.top - $(window).scrollTop() - 30 + "px", // Adjust the positioning as needed
+            left: containerOffset.left - $(window).scrollLeft() + "px",
+          })
+          .fadeIn(500, function () {
+            setTimeout(function () {
+              $(".copyAlert").fadeOut(1000);
+            }, 2000);
+          });
+      });
+    });
+
+    //function to pass the created_on date from the hidden input field
+    $(document).ready(function() {
+      $('#submit-btn').click(function(e) {
+        e.preventDefault();
+
+        // Get the current date and time
+        var now = new Date().toISOString();
+
+        // Set the value of the hidden input field
+        $('#created-on').val(now);
+
+        // Submit the form
+        $('#userAccountForm').submit();
+      });
+    });
+  </script>
+    <!-- Bootstrap JS -->
+    <script
+      src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+      integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+      integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+      integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>

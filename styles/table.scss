@@ -115,6 +115,10 @@ td:nth-child(3) {
   font-size: 14px;
 }
 
+td:nth-child(6) {
+  display: flex;
+}
+
 .copy-container {
   position: relative;
   display: inline-block;

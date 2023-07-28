@@ -22,11 +22,19 @@ router.post("/", (req, res) => {
   const password = req.body.password;
   const created_on = req.body.created_on;
   const user_id = req.session.user.id;
-  const orgId = req.session.user.organization_id;
+  let orgId = req.session.user.organization_id;
   let category = req.body.category;
   let type = req.body.type;
 
   console.log('type: ', type);
+
+  if(type === "personal") {
+    orgId = null;
+    console.log("is !type passing for type set to personal?");
+    console.log("orgId: ", orgId);
+  }
+  console.log("orgId: ", orgId);
+  console.log("type: ", type);
 
   newAccount(name, url, username, password, category, user_id, orgId, created_on)
     .then((data) => {

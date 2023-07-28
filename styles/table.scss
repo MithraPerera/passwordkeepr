@@ -24,6 +24,15 @@ th.no-background {
   font-size: 16px;
 }
 
+th.change-background {
+  background-color: #daf1f8;
+  border-color: #14213d;
+  color: #770f0f;
+  text-align: center;
+  font-size: 16px;
+  border: groove;
+}
+
 .table-header {
   width: 100%;
   border-bottom: 2px solid #fff;
@@ -116,8 +125,10 @@ td:nth-child(3) {
   font-size: 14px;
 }
 
-td:nth-child(6) {
+td:nth-child(7) {
   display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .copy-container {

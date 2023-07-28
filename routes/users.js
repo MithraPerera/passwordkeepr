@@ -23,7 +23,7 @@ router.get("/", async (req, res) => {
 
     const organizationAccounts = await loginUserdb.getAccountsByOrganizations(user.id, organization.org_id)
     const personalAccounts = await loginUserdb.getPersonalAccounts(user.id, organization.org_id)
-  
+
     const templateVars = {
       user: req.session.user,
       organization: organization.name,

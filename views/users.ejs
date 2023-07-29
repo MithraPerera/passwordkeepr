@@ -23,6 +23,7 @@
   <link rel="stylesheet" href="/styles/table.css" />
 
   <script src="/vendor/jquery-3.0.0.js"></script>
+  <script defer src="/scripts/app.js"></script>
   <style>
     html {
       background: #ddd6f3;
@@ -46,25 +47,50 @@
 
 <body>
   <%- include('partials/_header') %>
-
     <main class="main-content">
       <!--side menu displaying categories-->
       <ul class="side-menu sticky">
-        <li class="li-all">All Categories</li>
-        <li class="li-work">Work</li>
-        <li class="li-finance">Finances</li>
-        <li class="li-social-media">Social Media</li>
-        <li class="li-entertainment">Entertainment</li>
+        <li class="li-all">Categories</li>
+        <li class="li-finance">
+          <a href="/users">
+            <button class="btn btn-primary categoryButton" id="allButton">All</button>
+          </a>
+        </li>
+        <li class="li-finance">
+          <a href="/users/category/finance">
+            <button class="btn btn-outline-dark categoryButton">Finance</button>
+          </a>
+        </li>
+        <li class="li-social">
+          <a href="/users/category/social">
+            <button class="btn btn-outline-dark categoryButton">Social</button>
+          </a>
+        </li>
+        <li class="li-entertainment">
+          <a href="/users/category/entertainment">
+            <button class="btn btn-outline-dark categoryButton">Entertainment</button>
+          </a>
+        </li>
+        <li class="li-work">
+          <a href="/users/category/work">
+            <button class="btn btn-outline-dark categoryButton">Work</button>
+          </a>
+        </li>
       </ul>
       <div class="accounts-section">
         <div class="account-header">
           <h1 id="account-header-cat">Organization: <%= organization %>
           </h1>
         </div>
+        <div id="copySuccessAlert" class="alert alert-success" style="display: none;">
+          Password copied successfully!
+        </div>
         <!-- Organization Passwords -->
         <div class="border">
           <table class="table table-bordered">
-            <h1 id="account-header-cat">Admin Accounts</h1>
+            <h1 id="account-header-cat">
+              <%= organization %> Accounts
+            </h1>
             <form method="GET" action="/createAccount">
               <button type="submit" class="btn btn-outline-dark btn_account">Add New Account</button>
             </form>
@@ -76,13 +102,14 @@
                 <th>Password</th>
                 <th>Category</th>
                 <th class="no-background">Copy Password</th>
+                <th class="change-background">Edit/Delete Account</th>
               </tr>
             </thead>
             <tbody>
               <% for (const org_account of organizationAccounts) { %>
                 <tr>
                   <td>
-                    <%= org_account.account_name%>
+                    <%= org_account.account_name %>
                   </td>
                   <td>
                     <%= org_account.url %>
@@ -96,9 +123,17 @@
                   <td>
                     <%= org_account.category_name%>
                   </td>
-                  <td>
+                  <td id="table-buttons">
                     <button class="copyButton1">Copy</button>
-                    <span id="copyAlert">Password copied!</span>
+                  </td>
+                  <td>
+                    <form method="GET" action="/editAccount/<%= org_account.id %>">
+                      <button type="submit" class="editButton">Edit</button>
+                    </form>
+                    &nbsp
+                    <form method="POST" action="/deleteaccount/<%= org_account.id %>" onsubmit="return confirm('Are you sure you want to delete this account?');">
+                      <button type="submit" class="deleteButton">Delete</button>
+                    </form>
                   </td>
                 </tr>
                 <% } %>
@@ -121,11 +156,13 @@
                 <th>Password</th>
                 <th>Category</th>
                 <th class="no-background">Copy Password</th>
+                <th class="change-background">Edit/Delete Account</th>
               </tr>
             </thead>
             <tbody>
               <% for (const personal_account of personalAccounts) { %>
                 <tr>
+
                   <td>
                     <%= personal_account.name %>
                   </td>
@@ -139,11 +176,19 @@
                     <%= personal_account.password %>
                   </td>
                   <td>
-                    <%= personal_account.category_name%>
+                    <%= personal_account.category_name %>
                   </td>
                   <td>
                     <button class="copyButton1">Copy</button>
-                    <span id="copyAlert">Password copied!</span>
+                  </td>
+                  <td>
+                    <form method="GET" action="/editAccount/<%= personal_account.id %>">
+                      <button type="submit" class="editButton">Edit</button>
+                    </form>
+                    &nbsp
+                    <form method="POST" action="/deleteaccount/<%= personal_account.id %>" onsubmit="return confirm('Are you sure you want to delete this account?');">
+                      <button type="submit" class="deleteButton">Delete</button>
+                  </form>
                   </td>
                 </tr>
                 <% } %>
@@ -152,24 +197,23 @@
         </div>
 
         <script>
-          const copyPassword = function (password) {
+          const copyPassword = function(password) {
             alert(password);
-            // window.clipboardData.setData('Text', password);
-            // navigator.clipboard.writeText("unique text password");
+            window.clipboardData.setData('Text', password);
+            navigator.clipboard.writeText("unique text password");
           };
-          $(document).ready(function () {
-            $(".copyButton1").click(
-              function () {
-                const password = $(this).parent().parent().children("#passwordCopy").text();
-                navigator.clipboard.writeText(password);
-                $("#copyAlert").fadeIn(500, function () {
+          $(document).ready(function() {
+            $(".copyButton1").click(function() {
+              const password = $(this).parent().parent().children("#passwordCopy").text();
+              navigator.clipboard.writeText(password);
 
-                  setTimeout(function () {
-                    $("#copyAlert").fadeOut(1000);
-                  }, 2000);
-
-                });
+              // Show the success alert at the top of the page
+              $("#copySuccessAlert").fadeIn(500, function() {
+                setTimeout(function() {
+                  $("#copySuccessAlert").fadeOut(1000);
+                }, 2000);
               });
+            });
           });
         </script>
         </table>

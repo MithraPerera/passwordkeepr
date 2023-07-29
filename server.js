@@ -45,6 +45,8 @@ const loginRoute = require('./routes/login');
 const logoutRoute = require('./routes/logout');
 const categoryRoute = require('./routes/categories')
 const createAccountRoute = require('./routes/createAccount');
+const editAccountRoute = require('./routes/editAccount');
+const deleteAccountRoute = require('./routes/deleteAccount');
 
 // Define routes for different URL paths
 app.use('/users', usersRoutes);
@@ -52,8 +54,10 @@ app.use('/home', homeRoute);
 app.use('/register', registerRoute);
 app.use('/login', loginRoute);
 app.use('/logout', logoutRoute);
-app.use('/category', categoryRoute);
+app.use('/users/category/', categoryRoute);
 app.use('/createAccount', createAccountRoute);
+app.use('/editAccount', editAccountRoute);
+app.use('/deleteAccount', deleteAccountRoute);
 
 // Redirect the root path to '/home'
 app.get('/', (req, res) => {

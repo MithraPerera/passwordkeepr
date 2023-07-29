@@ -48,36 +48,41 @@
   <%- include('partials/_header') %>
 
 <div class="accountSubmissionBody">
-  <h2>Create New Account</h2>
+  <h2>Edit Existing Account</h2>
   <br>
-  <form action="/createAccount" method="POST" id="userAccountForm" class="userAccountForm">
+  <form action="/editAccount/<%= account.id %>" method="POST" id="userAccountForm" class="userAccountForm">
     <table class="userAccountInputs">
       <tr>
-        <td>Type</td>
+        <td>Update Type</td>
         <td>
           <select name="type">
-            <option value="organization">Organization</option>
-            <option value="personal">Personal</option>
+            <% if (account.organization_id === null) { %>
+              <option value="personal">Personal</option>
+              <option value="organization">Organization</option>
+            <% } else { %>
+              <option value="organization">Organization</option>
+              <option value="personal">Personal</option>
+            <% } %>
           </select>
         </td>
       </tr>
       <tr>
-        <td>Name</td>
+        <td>Update Name</td>
         <td>
-          <input type="text" name="name" placeholder="enter name">
+          <input type="text" name="name" value="<%= account.name %>">
         </td>
       </tr>
 
       <tr>
-        <td>URL</td>
+        <td>Update URL</td>
         <td>
-          <input type="url" name="url" placeholder="enter URL">
+          <input type="url" name="url" value="<%= account.url %>">
         </td>
       </tr>
       <tr>
-        <td>Username</td>
+        <td>Update Username</td>
         <td>
-          <input type="text" name="username" placeholder="enter username">
+          <input type="text" name="username" value="<%= account.username %>">
         </td>
       </tr>
       <tr>
@@ -95,7 +100,7 @@
       <tr>
         <td>Password</td>
         <td>
-          <input type="password" id="generated-password" name="password" placeholder="enter or generate pass">
+          <input type="password" id="generated-password" name="password" value="<%= account.password %>">
         </td>
       </tr>
       <tr>
@@ -162,7 +167,7 @@
       <tr>
         <td>
           <button type="button" id="generate-password-btn" class="btn btn-outline-dark">Generate</button>
-          <button type="submit" id="submit-btn" class="btn btn-primary">Submit New Account</button>
+          <button type="submit" id="submit-btn" class="btn btn-primary">Submit Update Account</button>
         </td>
       </tr>
       </table>

@@ -1,19 +1,23 @@
-.password-check{
-  text-align: center;
+.accountSubmissionBody{
+  background-color: #273644;
+  color: white;
   padding-top: 30px;
   margin-top: 20px;
-}
-
-.password-check div{
-  font-weight: bold;
-}
-
-.password-check table{
+  flex-direction: column;
   display: flex;
-  justify-content: center;
   align-items: center;
+  table-layout: fixed;
 }
+
 
 #generated-password{
   margin: 10px;
+}
+
+.password-generator{
+  font-size: small;
+}
+
+#passwordGeneratorForm{
+
 }

@@ -1,44 +1,100 @@
-LHL Node Skeleton
-=========
+# 🔐 :closed_lock_with_key: - PasswordKeepR
 
-## Project Setup
+# About Our App _PasswordKeepR_
+Introducing our cutting-edge password management solution designed for organizations like Lighthouse Labs – an efficient password storage system called **PasswordKeepR**. This app enables authorized users to access all the organization's passwords conveniently. With **PasswordKeepR**, users can _generate_ new passwords for specific accounts based on customizable options available in the form. These options include password length, lowercase letters, uppercase letters, numbers, and symbols.
 
-The following steps are only for _one_ of the group members to perform.
+Navigating the hassle of logging in to various websites becomes a breeze with our app. When a user needs to access a particular website, like Facebook, they can simply locate the relevant password within **PasswordKeepR**. By clicking a button, the password is automatically copied to the clipboard, streamlining the login process. Rest assured, **PasswordKeepR** keeps your sensitive information secure and easily accessible for smooth business operations. Say goodbye to password management headaches and safeguard your organization and personal accounts with **PasswordKeepR** today!
 
-1. Create your own copy of this repo using the `Use This Template` button, ideally using the name of your project. The repo should be marked Public
-2. Verify that the skeleton code now shows up in your repo on GitHub, you should be automatically redirected
-3. Clone your copy of the repo to your dev machine
-4. Add your team members as collaborators to the project so that they can push to this repo
-5. Let your team members know the repo URL so that they use the same repo (they should _not_ create a copy/fork of this repo since that will add additional workflow complexity to the project)
+## Contributors
+This impressive app, which I, Madiha Waqar along with Mithra Perera and Nick Ferracuti, contributed to, is a product of our midterms in the Lighthouse Labs Web Development Flex Program curriculum. 
 
+<a href="https://github.com/MithraPerera/passwordkeepr/graphs/contributors">
+  <img src="https://contrib.rocks/image?repo=MithraPerera/passwordkeepr" />
+</a>
 
-## Getting Started
+[Madiha Waqar](https://github.com/madiha-waqar)
+[Nick Ferracuti](https://github.com/NFerracuti)
+[Mithra Perera](https://github.com/MithraPerera)
 
-1. Create the `.env` by using `.env.example` as a reference: `cp .env.example .env`
-2. Update the .env file with your correct local information 
-  - username: `labber` 
-  - password: `labber` 
+## Tech Stack
+**PasswordKeepR** is _full-stack application_ that uses `PostgreSQL` relational database system and `Express` to manage the backend. Front-end has been build using bootstrap framework along with `EJS, CSS, SASS and Javascript`. 
+
+<p align="center">
+  <a href="https://skillicons.dev">
+    <img src="https://skillicons.dev/icons?i=postgres,express,nodejs,bootstrap,css,sass,javascript" />
+  </a>
+</p>
+
+## :traffic_light: Dependencies
+  ```
+    "bcrypt": "^5.1.0",
+    "cookie-session": "^2.0.0",
+    "dotenv": "^2.0.0",
+    "ejs": "^2.6.2",
+    "express": "^4.17.1",
+    "morgan": "^1.9.1",
+    "pg": "^8.5.0",
+    "sass": "^1.35.1"
+  ```
+
+## :seedling: ERD
+![PasswordKeepRERD Diagram](./docs/passwordkeepr_erd.png)
+
+## :triangular_flag_on_post: Getting Started
+
+Clone the repo onto your local device. 
+## Database & Application Setup
+- Create the .env by using `.env.example` as a reference: `cp .env.example .env`
+- Update the .env file with your correct local information
+  - username: `labber`
+  - password: `labber`
   - database: `midterm`
-3. Install dependencies: `npm i`
-4. Fix to binaries for sass: `npm rebuild node-sass`
-5. Reset database: `npm run db:reset`
-  - Check the db folder to see what gets created and seeded in the SDB
-7. Run the server: `npm run local`
-  - Note: nodemon is used, so you should not have to restart your server
-8. Visit `http://localhost:8080/`
+  - host: `localhost`
+- Install dependencies: `npm i`
+- Fix to binaries for sass: `npm rebuild node-sass`
+- Start the PostgreSQL server by using the `psql` command in terminal
+- Create database and tables using node-postgres
+  ``` psql
+    CREATE DATABASE midterm;
+    \c midterm 
+    ```
+- Reset database: `npm run db:reset`
+- Run the server: `npm run local`
 
-## Warnings & Tips
+## :dart: Requirements & Features
+- user can be assigned to an organization
+- an organization has many users
+- user can add a new username and password for a specific website
+- app can generate passwords based on the criteria specified (password length, contains lowercase,  contairs uppercase, contains numbers, etc)
+- user can edit and change their password any time
+- user can conveniently copy password to clipboard so they dont have to select the password
+- sites can be categoried, to, social (fb, linkedin), work related (bamboo, harvest), entertainment (snapchat, reddit), etc, etc
+ 
+## App Feature Screenshots
 
-- Do not edit the `layout.css` file directly, it is auto-generated by `layout.scss`.
-- Split routes into their own resource-based file names, as demonstrated with `users.js` and `widgets.js`.
-- Split database schema (table definitions) and seeds (inserts) into separate files, one per table. See `db` folder for pre-populated examples. 
-- Use helper functions to run your SQL queries and clean up any data coming back from the database. See `db/queries` for pre-populated examples.
-- Use the `npm run db:reset` command each time there is a change to the database schema or seeds. 
-  - It runs through each of the files, in order, and executes them against the database. 
-  - Note: you will lose all newly created (test) data each time this is run, since the schema files will tend to `DROP` the tables and recreate them.
+- Landing Page
 
-## Dependencies
+![Password Keeper Landing Page](./docs/passwordkeepr_landing_page.png)
 
-- Node 10.x or above
-- NPM 5.x or above
-- PG 6.x
+- Authenticated user enters the application dashbaord to access their organizations and personal accounts
+
+![Password Keeper Dashbaord](./docs/passwordkeepr_dashboard.png)
+
+- Password filteration based on categories
+
+![Password Keeper password filteration based on categories](./docs/passwordkeepr_category_filter.png)
+
+- Create new accounts / Generate new passwords
+
+![Password Keeper Create New Password](./docs/passwordkeepr_create_new_account.png)
+
+- Copy/Edit/Delete Password
+
+![Password Keeper Copy/Edit/Delete Password](./docs/passwordkeepr_copy_password.png)
+
+
+## :clap: Thank you for your interest!
+Working on PasswordKeepr was an undeniably awesome experience. Throughout the project, we gained a tremendous amount of knowledge about frontend-backend integration with a database and honed our skills in group collaboration, from the initial planning stages to the final presentation. This application undoubtedly boosted our confidence to venture into new territories and create even more exciting apps!
+Thankyou for visiting!
+
+------------------------------------------------------------------------------------------------

@@ -1,4 +1,4 @@
-# 🔐 :closed_lock_with_key: - PasswordKeepR
+# :closed_lock_with_key: - PasswordKeepR
 
 # About Our App _PasswordKeepR_
 Introducing our cutting-edge password management solution designed for organizations like Lighthouse Labs – an efficient password storage system called **PasswordKeepR**. This app enables authorized users to access all the organization's passwords conveniently. With **PasswordKeepR**, users can _generate_ new passwords for specific accounts based on customizable options available in the form. These options include password length, lowercase letters, uppercase letters, numbers, and symbols.
@@ -12,7 +12,7 @@ This impressive app, which I, Madiha Waqar along with Mithra Perera and Nick Fer
   <img src="https://contrib.rocks/image?repo=MithraPerera/passwordkeepr" />
 </a>
 
-[Madiha Waqar](https://github.com/madiha-waqar)
+[Madiha Waqar](https://www.linkedin.com/in/madiha-waqar-a8253827/)
 [Nick Ferracuti](https://github.com/NFerracuti)
 [Mithra Perera](https://github.com/MithraPerera)
 
